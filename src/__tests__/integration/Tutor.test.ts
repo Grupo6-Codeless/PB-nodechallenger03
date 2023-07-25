@@ -13,7 +13,6 @@ describe('Integration. Tutor Routes', () => {
         .get('/tutors')
         .query(sut);
 
-      console.log(body);
       expect(statusCode).toBe(400);
       expect(body).toEqual({
         message: 'ValidationError',
