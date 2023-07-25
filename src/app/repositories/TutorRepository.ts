@@ -14,6 +14,10 @@ class TutorRepository {
 
     return result;
   }
-}
 
+  async post(req: ITutorResponse): Promise<ITutorResponse> {
+    const result = await TutorSchema.create(req);
+    return result;
+  }
+}
 export default new TutorRepository();
