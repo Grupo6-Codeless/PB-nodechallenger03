@@ -2,7 +2,7 @@
 import { Router } from 'express';
 import TutorController from '../../app/controllers/TutorController';
 import GetValidation from '../../app/middlewares/validations/TutorGetValidate';
-import PushValidation from '../../app/middlewares/validations/TutorGetValidate';
+import PushValidation from '../../app/middlewares/validations/TutorPushValidate';
 
 const router = Router();
 
