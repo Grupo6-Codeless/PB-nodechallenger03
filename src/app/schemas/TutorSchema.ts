@@ -4,6 +4,7 @@ import paginate from 'mongoose-paginate-v2';
 import uniqueValidator from 'mongoose-unique-validator';
 
 import type { ITutor } from '../interfaces/ITutor';
+import './PetSchema';
 
 const schema = new Schema<ITutor>(
   {

@@ -9,7 +9,7 @@ class Database {
   async connect(): Promise<typeof mongoose> {
     try {
       return await mongoose.connect(
-        process.env.MONGO_DB_URL ?? 'mongodb://localhost:27017/admin'
+        process.env.MONGO_DB_URL ?? 'mongodb://localhost:27017'
       );
     } catch (error) {
       console.error('Erro ao conectar ao banco de dados:', error);
