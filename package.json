@@ -9,7 +9,7 @@
     "start": "node dist/server.js",
     "build": "tsc",
     "dev": "nodemon ./src/server.ts",
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
