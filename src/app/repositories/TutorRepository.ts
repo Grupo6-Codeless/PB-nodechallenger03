@@ -10,10 +10,7 @@ class TutorRepository {
       select: '-password',
       populate: { path: 'pets', model: 'Pet' },
     };
-    const result = await TutorSchema.paginate(
-      {},
-      { page, limit, options, ...options }
-    );
+    const result = await TutorSchema.paginate({}, { page, limit, ...options });
 
     return result;
   }

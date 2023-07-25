@@ -2,8 +2,8 @@ import express from 'express';
 import cors from 'cors';
 // import swaggerUI from 'swagger-ui-express';
 
-import './infra/databases/MongoDatabase';
-import routes from './infra/routes/index.router';
+import './infra/database/MongoDatabase';
+import routes from './routes/index.router';
 // import swaggerDocs from './swagger.json';
 
 class App {
