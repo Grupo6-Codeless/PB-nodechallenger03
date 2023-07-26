@@ -1,5 +1,5 @@
 class TutorServiceMock {
-  get(): any {
+  TutorGetRepositoryMock(): any {
     return {
       docs: [
         {
@@ -30,6 +30,26 @@ class TutorServiceMock {
       hasNextPage: true,
       prevPage: null,
       nextPage: 2,
+    };
+  }
+
+  TutorFindTutorOfPetRepositoryMockRequestCorrect(): any {
+    return {
+      _id: '64a32d48df2eaccf95fee709',
+      name: 'Antonio',
+      phone: '69981212317',
+      email: 'antonio@paidepet.com',
+      date_of_birth: '1993-12-12 10:10',
+      zip_code: 61760000,
+      pets: [
+        {
+          name: 'Kon',
+          species: 'dog',
+          carry: 'p',
+          weight: 10,
+          date_of_birth: '1993-12-12 10:10',
+        },
+      ],
     };
   }
 }
