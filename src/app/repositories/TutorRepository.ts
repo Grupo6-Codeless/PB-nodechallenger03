@@ -14,6 +14,13 @@ class TutorRepository {
 
     return result;
   }
+
+  async findTutorOfPet(query: {
+    _id: string;
+    pets: string;
+  }): Promise<ITutorResponse | null> {
+    return await TutorSchema.findOne(query);
+  }
 }
 
 export default new TutorRepository();
