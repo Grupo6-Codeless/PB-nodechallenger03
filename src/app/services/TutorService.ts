@@ -1,4 +1,3 @@
-import type { ITutorPaginate } from '../interfaces/ITutor';
 import type { ITutor, ITutorPaginate, ITutorResponse } from '../interfaces/ITutor';
 import TutorRepository from '../repositories/TutorRepository';
 import { isValidObjectId } from 'mongoose';
