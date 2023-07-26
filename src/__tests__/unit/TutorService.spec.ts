@@ -12,7 +12,6 @@ describe('Unit. Tutor Controller', () => {
         .mockReturnValueOnce(TutorServiceMock.get());
 
       const actual = await sut(query);
-
       expect(actual).toEqual(TutorServiceMock.get());
       expect(GetRepositoryMock).toHaveBeenCalledWith(query.page, query.limit);
     });
@@ -20,9 +19,7 @@ describe('Unit. Tutor Controller', () => {
 
   describe('Tutor Controller.post', () => {
     test('should return statusCode 202 && all tutors response with request correct', async () => {
-      const tutorPostRepositoryMock = jest
-        .spyOn(TutorRepository, 'post')
-        .mockReturnValue(TutorServiceMock.post());
+      const postTutor = TutorService.post;
 
       const body = {
         name: 'Guilherme',
@@ -33,7 +30,11 @@ describe('Unit. Tutor Controller', () => {
         zip_code: 61760000,
         pets: [],
       };
-      const postTutor = TutorService.post;
+
+      const tutorPostRepositoryMock = jest
+        .spyOn(TutorRepository, 'post')
+        .mockReturnValue(TutorServiceMock.post());
+
       const actual = await postTutor(body);
 
       expect(actual).toEqual(TutorServiceMock.post);
