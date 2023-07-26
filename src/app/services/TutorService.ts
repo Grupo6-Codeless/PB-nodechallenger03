@@ -20,7 +20,6 @@ class TutorService {
     }
 
     const tutors = await TutorRepository.get(validatePage, validateLimit);
-
     return tutors;
   }
 

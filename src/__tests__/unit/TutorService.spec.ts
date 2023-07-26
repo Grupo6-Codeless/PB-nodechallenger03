@@ -37,16 +37,8 @@ describe('Unit. Tutor Controller', () => {
 
       const actual = await postTutor(body);
 
-      expect(actual).toEqual(TutorServiceMock.post);
-      expect(tutorPostRepositoryMock).toHaveBeenCalledWith(
-        body.name,
-        body.password,
-        body.phone,
-        body.email,
-        body.date_of_birth,
-        body.zip_code,
-        body.pets
-      );
+      expect(actual).toEqual(TutorServiceMock.post());
+      expect(tutorPostRepositoryMock).toHaveBeenCalledWith(body);
     });
   });
 });

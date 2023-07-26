@@ -7,7 +7,7 @@ class TutorController {
     try {
       const result = await TutorService.get(req.query);
 
-      return res.status(StatusCodes.OK).json(result);
+      return res.status(200).json(result);
     } catch (error) {
       if (!(error.statusCode === undefined)) {
         return res.status(error.statusCode).json({
