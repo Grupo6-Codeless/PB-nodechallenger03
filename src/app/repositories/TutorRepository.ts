@@ -1,5 +1,5 @@
 import type { PaginateResult } from 'mongoose';
-import type { ITutorResponse } from '../interfaces/ITutor';
+import type { ITutorResponse, ITutor } from '../interfaces/ITutor';
 import TutorSchema from '../schemas/TutorSchema';
 class TutorRepository {
   async get(
@@ -15,7 +15,7 @@ class TutorRepository {
     return result;
   }
 
-  async post(req: ITutorResponse): Promise<ITutorResponse> {
+  async post(req: ITutor): Promise<ITutor> {
     const result = await TutorSchema.create(req);
     return result;
   }
