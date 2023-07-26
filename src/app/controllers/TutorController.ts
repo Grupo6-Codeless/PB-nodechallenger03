@@ -21,7 +21,7 @@ class TutorController {
 
   async push(req: Request, res: Response): Promise<Response> {
     try {
-      const result = await TutorService.push(req.body);
+      const result = await TutorService.post(req.body);
       return res.status(StatusCodes.OK).json(result);
     } catch (error) {
       if (!(error.statusCode === undefined)) {
