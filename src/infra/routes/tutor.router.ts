@@ -7,4 +7,6 @@ const router = Router();
 
 router.get('/tutors', GetValidation, TutorController.get);
 
+
+router.put('/tutor/:id', PutValidation, TutorController.update);
 export default router;
