@@ -1,4 +1,4 @@
-import type { ITutorPaginate } from '../interfaces/ITutor';
+import type { ITutorPaginate, ITutorResponse } from '../interfaces/ITutor';
 import TutorRepository from '../repositories/TutorRepository';
 
 class TutorService {
@@ -22,6 +22,18 @@ class TutorService {
 
     return tutors;
   }
-}
+
+  async deleteTutorById(id: string): Promise<ITutorResponse | null> {
+    try {
+      const deletedTutor = await TutorRepository.delete({ _id: id });
+      return deletedTutor;
+    } catch (error) {
+      console.error('Erro ao deletar o tutor:', error);
+      throw new Error('Erro ao deletar o tutor.');
+    }
+  }
+  }
+
+
 
 export default new TutorService();

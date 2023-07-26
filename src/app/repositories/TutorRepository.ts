@@ -1,6 +1,7 @@
 import type { PaginateResult } from 'mongoose';
 import type { ITutorResponse } from '../interfaces/ITutor';
 import TutorSchema from '../schemas/TutorSchema';
+import { query } from 'express';
 class TutorRepository {
   async get(
     page: number,
@@ -14,12 +15,20 @@ class TutorRepository {
 
     return result;
   }
+  
+
 
   async findTutorOfPet(query: {
     _id: string;
     pets: string;
   }): Promise<ITutorResponse | null> {
     return await TutorSchema.findOne(query);
+  }
+
+  async delete(param:{
+    _id: string
+  }): Promise<ITutorResponse | null>{
+     return await TutorSchema.findOne(param)
   }
 }
 
