@@ -1,5 +1,4 @@
 import type { PaginateResult } from 'mongoose';
-import type { ITutorResponse } from '../interfaces/ITutor';
 import type { ITutor, ITutorResponse } from '../interfaces/ITutor';
 import TutorSchema from '../schemas/TutorSchema';
 class TutorRepository {
