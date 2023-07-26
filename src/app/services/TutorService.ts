@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
-import type { ITutorPaginate, ITutorResponse } from '../interfaces/ITutor';
+import type { ITutorPaginate, ITutor } from '../interfaces/ITutor';
 import TutorRepository from '../repositories/TutorRepository';
 
 class TutorService {
@@ -24,7 +24,7 @@ class TutorService {
     return tutors;
   }
 
-  async push(req: ITutorResponse): Promise<ITutorResponse> {
+  async post(req: ITutor): Promise<ITutor> {
     const tutors = await TutorRepository.post(req);
     return tutors;
   }
