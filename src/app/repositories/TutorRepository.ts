@@ -1,5 +1,6 @@
 import type { PaginateResult } from 'mongoose';
 import type { ITutorResponse } from '../interfaces/ITutor';
+import type { ITutor, ITutorResponse } from '../interfaces/ITutor';
 import TutorSchema from '../schemas/TutorSchema';
 class TutorRepository {
   async get(
@@ -20,6 +21,15 @@ class TutorRepository {
     pets: string;
   }): Promise<ITutorResponse | null> {
     return await TutorSchema.findOne(query);
+  }
+
+  async update(id: string, data: ITutor): Promise<ITutorResponse | null> {
+    return await TutorSchema.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    })
+    .select('-_id')
+    .exec();
   }
 }
 

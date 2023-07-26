@@ -1,5 +1,8 @@
 import type { ITutorPaginate } from '../interfaces/ITutor';
+import type { ITutor, ITutorPaginate, ITutorResponse } from '../interfaces/ITutor';
 import TutorRepository from '../repositories/TutorRepository';
+import { isValidObjectId } from 'mongoose';
+import NotFoundError from '../errors/NotFoundError';
 
 class TutorService {
   async get(payload: any): Promise<ITutorPaginate> {
@@ -21,6 +24,19 @@ class TutorService {
     const tutors = await TutorRepository.get(validatePage, validateLimit);
 
     return tutors;
+  }
+
+  async update(id: string, data: ITutor): Promise<ITutorResponse> {
+      if(!isValidObjectId(id)){
+        throw new NotFoundError('Id not valid')
+      }
+      const updTutor = await TutorRepository.update(id, data);
+
+      if(!updTutor){
+        throw new NotFoundError('Tutor not found');
+      }
+
+      return updTutor;
   }
 }
 
