@@ -52,6 +52,18 @@ class TutorServiceMock {
       ],
     };
   }
+
+  put(): any {
+    return {
+      name: 'Geovanna',
+      password: '123456',
+      phone: '85999323895',
+      email: 'geovanna@paidepet.com',
+      date_of_birth: '1993-12-12 10:10',
+      zip_code: 61760000,
+      pets: [],
+    };
+  }
 }
 
 export default new TutorServiceMock();
