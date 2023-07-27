@@ -2,7 +2,7 @@ import type { Types } from 'mongoose';
 
 export interface ITutor {
   name: string;
-  password: string;
+  password: string | undefined;
   phone: string;
   email: string;
   date_of_birth: string;
