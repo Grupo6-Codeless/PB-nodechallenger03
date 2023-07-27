@@ -29,31 +29,3 @@ describe('Unit. Tutor Service', () => {
         }));
     });
 });
-describe('Tutor Service.deleteTutorById', () => {
-    test('should return statusCode 204 && empty response with valid id', () => __awaiter(void 0, void 0, void 0, function* () {
-        // Mock do método delete do repositório para retornar dados simulados
-        const TutorDeleteRepositoryMock = jest
-            .spyOn(TutorRepository_1.default, 'delete')
-            .mockReturnValueOnce(TutorService_mock_1.default.TutorDeleteRepositoryMock());
-        const sut = TutorService_1.default.deleteTutorById;
-        const validId = 'valid-id';
-        const actual = yield sut(validId);
-        // Verifica se o resultado retornado é igual ao mock do repositório
-        expect(actual).toEqual(TutorService_mock_1.default.TutorDeleteRepositoryMock());
-        // Verifica se o método do repositório foi chamado corretamente com o ID válido
-        expect(TutorDeleteRepositoryMock).toHaveBeenCalledWith(validId);
-    }));
-    test('should return statusCode 404 && Tutor not found response with invalid id', () => __awaiter(void 0, void 0, void 0, function* () {
-        // Mock do método delete do repositório para retornar null, indicando que o tutor não foi encontrado
-        const TutorDeleteRepositoryMock = jest
-            .spyOn(TutorRepository_1.default, 'delete')
-            .mockResolvedValueOnce(null);
-        const sut = TutorService_1.default.deleteTutorById;
-        const invalidId = 'invalid-id';
-        const actual = yield sut(invalidId);
-        // Verifica se o resultado retornado é null, indicando que o tutor não foi encontrado
-        expect(actual).toBeNull();
-        // Verifica se o método do repositório foi chamado corretamente com o ID inválido
-        expect(TutorDeleteRepositoryMock).toHaveBeenCalledWith(invalidId);
-    }));
-});

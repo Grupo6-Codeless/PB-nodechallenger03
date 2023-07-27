@@ -38,12 +38,12 @@ class TutorService {
     deleteTutorById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const deletedTutor = yield TutorRepository_1.default.delete({ _id: id });
+                const deletedTutor = yield TutorRepository_1.default.delete({ id });
                 return deletedTutor;
             }
             catch (error) {
-                console.error('Erro ao deletar o tutor:', error);
-                throw new Error('Erro ao deletar o tutor.');
+                console.error('Error deleting tutor:', error);
+                throw new Error('Error deleting tutor.');
             }
         });
     }

@@ -40,12 +40,12 @@ class TutorController {
                     return res.status(204).json();
                 }
                 else {
-                    return res.status(404).json({ error: 'Tutor não encontrado.' });
+                    return res.status(404).json({ error: 'Tutor not found.' });
                 }
             }
             catch (error) {
-                console.error('Erro ao deletar o tutor:', error);
-                return res.status(500).json({ error: 'Erro ao deletar o tutor.' });
+                console.error('Error deleting tutor:', error);
+                return res.status(500).json({ error: 'Error deleting tutor.' });
             }
         });
     }

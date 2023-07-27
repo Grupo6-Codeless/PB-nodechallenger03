@@ -31,7 +31,16 @@ class TutorRepository {
     }
     delete(param) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield TutorSchema_1.default.findOne(param);
+            try {
+                const tutor = yield TutorSchema_1.default.findOneAndDelete({ _id: param.id });
+                if (!tutor) {
+                    return null;
+                }
+                return tutor;
+            }
+            catch (error) {
+                throw new Error('Failed to delete tutor.');
+            }
         });
     }
 }
