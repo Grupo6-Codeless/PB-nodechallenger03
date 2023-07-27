@@ -29,5 +29,10 @@ class TutorRepository {
             return yield TutorSchema_1.default.findOne(query);
         });
     }
+    delete(param) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield TutorSchema_1.default.findOne(param);
+        });
+    }
 }
 exports.default = new TutorRepository();

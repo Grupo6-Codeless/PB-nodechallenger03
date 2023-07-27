@@ -31,5 +31,23 @@ class TutorController {
             }
         });
     }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            try {
+                const deletedTutor = yield TutorService_1.default.deleteTutorById(id);
+                if (deletedTutor) {
+                    return res.status(204).json();
+                }
+                else {
+                    return res.status(404).json({ error: 'Tutor não encontrado.' });
+                }
+            }
+            catch (error) {
+                console.error('Erro ao deletar o tutor:', error);
+                return res.status(500).json({ error: 'Erro ao deletar o tutor.' });
+            }
+        });
+    }
 }
 exports.default = new TutorController();

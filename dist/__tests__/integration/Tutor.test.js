@@ -34,3 +34,18 @@ describe('Integration. Tutor Routes', () => {
         }));
     });
 });
+describe('Tutor DELETE route', () => {
+    test('should return statusCode 404 && Tutor not found response with invalid id', () => __awaiter(void 0, void 0, void 0, function* () {
+        const invalidId = 'invalid-id';
+        const { body, statusCode } = yield (0, supertest_1.default)(app).delete(`/tutors/${invalidId}`);
+        expect(statusCode).toBe(404);
+        expect(body).toEqual({ error: 'Tutor not found.' });
+    }));
+    test('should return statusCode 204 && empty response with valid id', () => __awaiter(void 0, void 0, void 0, function* () {
+        // Suponha que você tenha um ID válido existente no banco de dados para um tutor
+        const validId = 'valid-id';
+        const { body, statusCode } = yield (0, supertest_1.default)(app).delete(`/tutors/${validId}`);
+        expect(statusCode).toBe(204);
+        expect(body).toEqual({});
+    }));
+});

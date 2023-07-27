@@ -35,5 +35,17 @@ class TutorService {
             return tutors;
         });
     }
+    deleteTutorById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const deletedTutor = yield TutorRepository_1.default.delete({ _id: id });
+                return deletedTutor;
+            }
+            catch (error) {
+                console.error('Erro ao deletar o tutor:', error);
+                throw new Error('Erro ao deletar o tutor.');
+            }
+        });
+    }
 }
 exports.default = new TutorService();

@@ -25,11 +25,11 @@ class TutorService {
 
   async deleteTutorById(id: string): Promise<ITutorResponse | null> {
     try {
-      const deletedTutor = await TutorRepository.delete({ _id: id });
+      const deletedTutor = await TutorRepository.delete({ id });
       return deletedTutor;
     } catch (error) {
-      console.error('Erro ao deletar o tutor:', error);
-      throw new Error('Erro ao deletar o tutor.');
+      console.error('Error deleting tutor:', error);
+      throw new Error('Error deleting tutor.');
     }
   }
   }

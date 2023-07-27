@@ -53,5 +53,19 @@ class TutorServiceMock {
             ],
         };
     }
+    // ... outros métodos de mock existentes ...
+    TutorDeleteRepositoryMock() {
+        return {
+            // Mock da resposta de exclusão bem-sucedida
+            success: true,
+        };
+    }
+    TutorDeleteRepositoryMockTutorNotFound() {
+        return {
+            // Mock da resposta quando o tutor não é encontrado para exclusão
+            success: false,
+            message: 'Tutor not found.',
+        };
+    }
 }
 exports.default = new TutorServiceMock();

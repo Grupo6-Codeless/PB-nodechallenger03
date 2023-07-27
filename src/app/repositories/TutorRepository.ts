@@ -16,8 +16,6 @@ class TutorRepository {
     return result;
   }
   
-
-
   async findTutorOfPet(query: {
     _id: string;
     pets: string;
@@ -25,10 +23,17 @@ class TutorRepository {
     return await TutorSchema.findOne(query);
   }
 
-  async delete(param:{
-    _id: string
-  }): Promise<ITutorResponse | null>{
-     return await TutorSchema.findOne(param)
+  async delete(param: { id: string }): Promise<ITutorResponse | null> {
+    try {
+      const tutor = await TutorSchema.findOneAndDelete({ _id: param.id });
+      if (!tutor) {
+        return null;
+      }
+
+      return tutor;
+    } catch (error) {
+      throw new Error('Failed to delete tutor.');
+    }
   }
 }
 
