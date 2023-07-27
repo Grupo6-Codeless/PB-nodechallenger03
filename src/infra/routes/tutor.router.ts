@@ -11,4 +11,6 @@ router.get('/tutors', GetValidation, TutorController.get);
 
 router.put('/tutor/:id', PutValidation, TutorController.update);
 
+router.patch('/tutor/:id', TutorPatchValidation, TutorController.update);
+
 export default router;
