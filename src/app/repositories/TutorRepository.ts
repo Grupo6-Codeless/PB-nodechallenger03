@@ -1,5 +1,8 @@
 import type { PaginateResult } from 'mongoose';
-import type { ITutorPasswordResponse, ITutorResponse } from '../interfaces/ITutor';
+import type {
+  ITutorPasswordResponse,
+  ITutorResponse,
+} from '../interfaces/ITutor';
 import TutorSchema from '../schemas/TutorSchema';
 class TutorRepository {
   async get(
@@ -25,7 +28,7 @@ class TutorRepository {
   async getByEmailToAuth(
     email: string
   ): Promise<ITutorPasswordResponse | null> {
-    const valid =  await TutorSchema.findOne({ email }).select('password');
+    const valid = await TutorSchema.findOne({ email }).select('password');
     return valid;
   }
 }
