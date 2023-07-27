@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
+import { StatusCodes } from 'http-status-codes';
 
 export default (req: Request, res: Response, next: NextFunction): void => {
   try {
@@ -20,7 +21,7 @@ export default (req: Request, res: Response, next: NextFunction): void => {
     for (const error of errors.details) {
       errorsDetails.push(error.message.replace(/\\/g, '').replace(/"/g, ''));
     }
-    res.status(400).json({
+    res.status(StatusCodes.BAD_REQUEST).json({
       message: errors.name,
       details: errorsDetails,
     });
