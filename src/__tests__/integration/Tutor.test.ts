@@ -32,23 +32,12 @@ describe('Integration. Tutor Routes', () => {
     });
   });
   describe('Tutor POST route', () => {
-    test('should return statusCode 400 && ValidateError response with query required', async () => {
-      const sut = {
-        message: 'ValidationError',
-        details: [
-          'name is required',
-          'phone is required',
-          'email is required',
-          'password is required',
-          'date_of_birth is required',
-          'zip_code is required',
-          'pets is required',
-        ],
-      };
+    test('should return statusCode 400 && tutors response with request correct', async () => {
+      const sut = {};
 
       const { body, statusCode } = await request(app.init())
         .post('/tutor')
-        .query(sut);
+        .send(sut);
       expect(statusCode).toBe(StatusCodes.BAD_REQUEST);
       expect(body).toEqual({
         message: 'ValidationError',
@@ -62,6 +51,13 @@ describe('Integration. Tutor Routes', () => {
           'pets is required',
         ],
       });
+    });
+    test('', async () => {
+      const sut = { page: 2, limit: 10 };
+      const { body, statusCode } = await request(app.init())
+        .get('/tutors')
+        .send(sut);
+      console.log(body, statusCode);
     });
   });
 });
