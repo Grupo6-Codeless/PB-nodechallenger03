@@ -32,7 +32,7 @@ describe('Integration. Tutor Routes', () => {
     });
   });
   describe('Tutor POST route', () => {
-    test('should return statusCode 400 && tutors response with request correct', async () => {
+    test('should return statusCode 400 && tutors response with request required', async () => {
       const sut = {};
 
       const { body, statusCode } = await request(app.init())
@@ -52,12 +52,51 @@ describe('Integration. Tutor Routes', () => {
         ],
       });
     });
-    test('', async () => {
-      const sut = { page: 2, limit: 10 };
+    test('should return statusCode 200 && tutors response with request correct', async () => {
+      const sut = {
+        name: 'Guilherme teste',
+        password: '123123',
+        phone: '116391232281212317',
+        email: '1guilherm12123e@paidepet.com',
+        date_of_birth: '1993-12-12 10:10',
+        zip_code: '61760000',
+        pets: [],
+      };
       const { body, statusCode } = await request(app.init())
-        .get('/tutors')
+        .post('/tutor')
         .send(sut);
+
       console.log(body, statusCode);
+      expect(statusCode).toBe(StatusCodes.OK);
+      expect(body).toEqual({
+        name: 'Guilherme teste',
+        phone: '116391232281212317',
+        email: '1guilherm12123e@paidepet.com',
+        date_of_birth: '1993-12-12 10:10',
+        zip_code: 61760000,
+        _id: body._id,
+      });
+    });
+    test('should return statusCode 400 && tutors response with tutor already exists', async () => {
+      const sut = {
+        name: 'Guilherme teste 4',
+        password: '123123',
+        phone: '8299634319661',
+        email: 'email6@email.com',
+        date_of_birth: '1993-12-12 10:10',
+        zip_code: '61760000',
+        pets: [],
+      };
+      const { body, statusCode } = await request(app.init())
+        .post('/tutor')
+        .send(sut);
+
+      console.log(body, statusCode);
+      expect(statusCode).toBe(StatusCodes.BAD_REQUEST);
+      expect(body).toEqual({
+        details: ['phone must be unique', 'email must be unique'],
+        message: 'DuplicateFieldError',
+      });
     });
   });
 });
