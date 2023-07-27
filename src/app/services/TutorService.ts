@@ -1,5 +1,6 @@
 import type { ITutorPaginate, ITutorResponse } from '../interfaces/ITutor';
 import TutorRepository from '../repositories/TutorRepository';
+import NotFoundError from '../errors/NotFoundError';
 
 class TutorService {
   async get(payload: any): Promise<ITutorPaginate> {
@@ -24,16 +25,11 @@ class TutorService {
   }
 
   async deleteTutorById(id: string): Promise<ITutorResponse | null> {
-    try {
-      const deletedTutor = await TutorRepository.delete({ id });
-      return deletedTutor;
-    } catch (error) {
-      console.error('Error deleting tutor:', error);
-      throw new Error('Error deleting tutor.');
-    }
-  }
-  }
+    const deletedTutor = await TutorRepository.delete(id);
+    if (deletedTutor == null) throw new NotFoundError('Not Tutor exists');
 
-
+    return deletedTutor;
+  }
+}
 
 export default new TutorService();

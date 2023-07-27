@@ -19,20 +19,17 @@ class TutorController {
   }
 
   async delete(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params; 
-
     try {
-      const deletedTutor = await TutorService.deleteTutorById(id);
-      if (deletedTutor) {
-       
-        return res.status(204).json();
-      } else {
-       
-        return res.status(404).json({ error: 'Tutor not found.' });
-      }
+      const { id } = req.params;
+      await TutorService.deleteTutorById(id);
+      return res.status(204).json();
     } catch (error) {
-      console.error('Error deleting tutor:', error);
-      
+      if (!(error.statusCode === undefined)) {
+        return res.status(error.statusCode).json({
+          message: error.name,
+          details: error.message,
+        });
+      }
       return res.status(500).json({ error: 'Error deleting tutor.' });
     }
   }
