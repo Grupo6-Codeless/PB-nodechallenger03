@@ -27,7 +27,7 @@ class TutorRepository {
       new: true,
       runValidators: true,
     })
-    .select('-_id')
+    .select('-_id -password')
     .exec();
   }
 }

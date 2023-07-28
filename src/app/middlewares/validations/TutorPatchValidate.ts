@@ -7,7 +7,6 @@ export default (req: Request, res: Response, next: NextFunction): void => {
             name: Joi.string().optional().trim(),
             phone: Joi.string().optional().trim(),
             email: Joi.string().optional().trim(),
-            password: Joi.string().optional(),
             date_of_birth: Joi.date().optional(),
             zip_code: Joi.string().optional().trim(),
         });
