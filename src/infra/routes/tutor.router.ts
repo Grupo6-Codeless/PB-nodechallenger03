@@ -11,8 +11,8 @@ const router = Router();
 
 router.post('/tutor', PushValidation, TutorController.push);
 router.get('/tutors', AuthVerify, GetValidation, TutorController.get);
-router.put('/tutor/:id', PutValidation, TutorController.update);
-router.patch('/tutor/:id', PatchValidation, TutorController.update);
-router.delete('/tutor/:id', TutorController.delete);
+router.put('/tutor/:id', AuthVerify, PutValidation, TutorController.update);
+router.patch('/tutor/:id', AuthVerify, PatchValidation, TutorController.update);
+router.delete('/tutor/:id', AuthVerify, TutorController.delete);
 
 export default router;
