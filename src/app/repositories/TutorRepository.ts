@@ -27,6 +27,15 @@ class TutorRepository {
     return await TutorSchema.findOne(query);
   }
 
+  async update(id: string, data: ITutor): Promise<ITutorResponse | null> {
+    return await TutorSchema.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    })
+      .select('-_id')
+      .exec();
+  }
+
   async getByEmailToAuth(
     email: string
   ): Promise<ITutorPasswordResponse | null> {

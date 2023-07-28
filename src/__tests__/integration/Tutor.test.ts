@@ -26,8 +26,8 @@ describe('Integration. Tutor Routes', () => {
     const sutCreateTutor = {
       name: 'Guilherme teste',
       password: '123123',
-      phone: '69122333111232',
-      email: '1gulherm1wew3ee@paidepet.com',
+      phone: '69122389111232',
+      email: '1gulherm1w3ee@paidepet.com',
       date_of_birth: '1993-12-12 10:10',
       zip_code: '61760000',
     };

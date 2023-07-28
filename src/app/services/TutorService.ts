@@ -6,9 +6,24 @@ import type {
 } from '../interfaces/ITutor';
 
 import TutorRepository from '../repositories/TutorRepository';
-import bcrypt from 'bcrypt';
+import { genSalt, hash } from 'bcrypt';
+import { isValidObjectId } from 'mongoose';
+import NotFoundError from '../errors/NotFoundError';
 
 class TutorService {
+  async post(req: ITutor): Promise<ITutorResponse> {
+    const salt = await genSalt(10);
+    const hashpassword = await hash(req.password, salt);
+    req.password = hashpassword;
+
+    const result = await TutorRepository.post(req);
+
+    result.password = undefined;
+    result.pets = undefined;
+
+    return result;
+  }
+
   async get(payload: any): Promise<ITutorPaginate> {
     const { page, limit } = payload;
     let validatePage: number;
@@ -29,17 +44,17 @@ class TutorService {
     return tutors;
   }
 
-  async post(req: ITutor): Promise<ITutorResponse> {
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(req.password, salt);
-    req.password = hash;
+  async update(id: string, data: ITutor): Promise<ITutorResponse> {
+    if (!isValidObjectId(id)) {
+      throw new NotFoundError('Id not valid');
+    }
+    const updTutor = await TutorRepository.update(id, data);
 
-    const result = await TutorRepository.post(req);
+    if (updTutor == null) {
+      throw new NotFoundError('Tutor not found');
+    }
 
-    result.password = undefined;
-    result.pets = undefined;
-
-    return result;
+    return updTutor;
   }
 }
 
