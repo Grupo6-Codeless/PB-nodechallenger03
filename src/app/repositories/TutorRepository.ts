@@ -27,6 +27,10 @@ class TutorRepository {
     return await TutorSchema.findOne(query);
   }
 
+  async delete(id: string): Promise<ITutorResponse | null> {
+    return await TutorSchema.findByIdAndDelete(id);
+  }
+
   async update(id: string, data: ITutor): Promise<ITutorResponse | null> {
     return await TutorSchema.findByIdAndUpdate(id, data, {
       new: true,

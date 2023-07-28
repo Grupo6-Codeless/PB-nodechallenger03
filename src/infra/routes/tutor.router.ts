@@ -9,12 +9,10 @@ import PatchValidation from '../../app/middlewares/validations/PetPatchValidate'
 
 const router = Router();
 
-router.get('/tutors', AuthVerify, GetValidation, TutorController.get);
-
 router.post('/tutor', PushValidation, TutorController.push);
-
+router.get('/tutors', AuthVerify, GetValidation, TutorController.get);
 router.put('/tutor/:id', PutValidation, TutorController.update);
-
 router.patch('/tutor/:id', PatchValidation, TutorController.update);
+router.delete('/tutor/:id', TutorController.delete);
 
 export default router;

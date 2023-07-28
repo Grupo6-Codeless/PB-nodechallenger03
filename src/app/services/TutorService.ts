@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+import { genSalt, hash } from 'bcrypt';
+import { isValidObjectId } from 'mongoose';
+
 import type {
   ITutorPaginate,
   ITutor,
   ITutorResponse,
 } from '../interfaces/ITutor';
-
 import TutorRepository from '../repositories/TutorRepository';
-import { genSalt, hash } from 'bcrypt';
-import { isValidObjectId } from 'mongoose';
 import NotFoundError from '../errors/NotFoundError';
 
 class TutorService {
@@ -55,6 +54,13 @@ class TutorService {
     }
 
     return updTutor;
+  }
+
+  async deleteTutorById(id: string): Promise<ITutorResponse | null> {
+    const deletedTutor = await TutorRepository.delete(id);
+    if (deletedTutor == null) throw new NotFoundError('Not Tutor exists');
+
+    return deletedTutor;
   }
 }
 
