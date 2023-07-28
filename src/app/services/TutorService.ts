@@ -8,6 +8,7 @@ import type {
 } from '../interfaces/ITutor';
 import TutorRepository from '../repositories/TutorRepository';
 import NotFoundError from '../errors/NotFoundError';
+import UnauthorizedError from '../errors/UnauthorizedError';
 
 class TutorService {
   async post(req: ITutor): Promise<ITutorResponse> {
@@ -58,9 +59,12 @@ class TutorService {
 
   async deleteTutorById(id: string): Promise<ITutorResponse | null> {
     const deletedTutor = await TutorRepository.delete(id);
-    if (deletedTutor == null) throw new NotFoundError('Not Tutor exists');
 
-    return deletedTutor;
+    if (deletedTutor == null) throw new NotFoundError('Not Tutor exists');
+    if (deletedTutor.pets?.length !== 0)
+      throw new UnauthorizedError('Tutors have Pets associates');
+
+    return await TutorRepository.delete(id);
   }
 }
 
