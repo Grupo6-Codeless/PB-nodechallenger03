@@ -1,6 +1,7 @@
 import request from 'supertest';
 
 import App from '../../app';
+import { StatusCodes } from 'http-status-codes';
 
 const app = new App().init();
 
@@ -22,8 +23,18 @@ describe('Integration. Tutor Routes', () => {
 
       const { body, statusCode } = await request(app).get('/tutors').query(sut);
 
-      expect(statusCode).toBe(200);
+      expect(statusCode).toBe(StatusCodes.OK);
       expect(body).toHaveProperty('docs');
+    });
+  });
+  describe('Tutor DELETE route', () => {
+    test('should return status code 204', async () => {
+      const petid = '64c4236ad4e344efb1111e46';
+      const tutorid = '64c025e73d7493678bcccc8a';
+      // eslint-disable-next-line prettier/prettier
+      const {body, statusCode} = await request(app).delete(`/pet/${petid}/tutor/${tutorid}`);
+      expect(statusCode).toBe(StatusCodes.NO_CONTENT);
+      expect(body).toEqual({});
     });
   });
 });
