@@ -19,7 +19,6 @@ router.patch(
   petPatchValidation,
   PetController.update
 );
-
-router.delete('/pet/:petId/tutor/:tutorId', PetController.delete);
+router.delete('/pet/:petId/tutor/:tutorId', AuthVerify, PetController.delete);
 
 export default router;
