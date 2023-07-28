@@ -35,7 +35,8 @@ class TutorService {
     req.password = hash;
 
     const result = await TutorRepository.post(req);
-
+    result.password = undefined;
+    result.pets = undefined;
     return result;
   }
 }

@@ -56,8 +56,8 @@ describe('Integration. Tutor Routes', () => {
       const sut = {
         name: 'Guilherme teste',
         password: '123123',
-        phone: '116391232281212317',
-        email: '1guilherm12123e@paidepet.com',
+        phone: '1199135590',
+        email: '11emailtest@email.com',
         date_of_birth: '1993-12-12 10:10',
         zip_code: '61760000',
         pets: [],
@@ -70,8 +70,8 @@ describe('Integration. Tutor Routes', () => {
       expect(statusCode).toBe(StatusCodes.OK);
       expect(body).toEqual({
         name: 'Guilherme teste',
-        phone: '116391232281212317',
-        email: '1guilherm12123e@paidepet.com',
+        phone: '1199135590',
+        email: '11emailtest@email.com',
         date_of_birth: '1993-12-12 10:10',
         zip_code: 61760000,
         _id: body._id,
@@ -81,8 +81,8 @@ describe('Integration. Tutor Routes', () => {
       const sut = {
         name: 'Guilherme teste 4',
         password: '123123',
-        phone: '8299634319661',
-        email: 'email6@email.com',
+        phone: '18299634319661',
+        email: '1email6@email.com',
         date_of_birth: '1993-12-12 10:10',
         zip_code: '61760000',
         pets: [],
@@ -90,8 +90,6 @@ describe('Integration. Tutor Routes', () => {
       const { body, statusCode } = await request(app.init())
         .post('/tutor')
         .send(sut);
-
-      console.log(body, statusCode);
       expect(statusCode).toBe(StatusCodes.BAD_REQUEST);
       expect(body).toEqual({
         details: ['phone must be unique', 'email must be unique'],

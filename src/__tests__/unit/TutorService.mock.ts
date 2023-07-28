@@ -36,12 +36,10 @@ class TutorServiceMock {
   post(): any {
     return {
       name: 'Guilherme',
-      password: '123123',
       phone: '69981212317',
       email: 'antonio@paidepet.com',
       date_of_birth: '1993-12-12 10:10',
       zip_code: 61760000,
-      pets: [],
     };
   }
 }
