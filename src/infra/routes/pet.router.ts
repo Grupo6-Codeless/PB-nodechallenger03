@@ -17,4 +17,6 @@ router.patch(
   PetController.update
 );
 
+router.delete('/pet/:petId/tutor/:tutorId');
+
 export default router;
