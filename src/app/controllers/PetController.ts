@@ -30,7 +30,7 @@ class PetController {
     try {
       const { petId, tutorId } = req.params;
       await PetService.delete(petId, tutorId);
-      return res.send(StatusCodes.NO_CONTENT).json();
+      return res.status(StatusCodes.NO_CONTENT).json();
     } catch (error) {
       if (error.statusCode !== undefined) {
         return res.status(error.statusCode).json({
