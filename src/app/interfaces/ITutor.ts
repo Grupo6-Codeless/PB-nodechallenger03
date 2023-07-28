@@ -2,11 +2,11 @@ import type { Types } from 'mongoose';
 
 export interface ITutor {
   name: string;
-  password: string;
+  password: string | undefined;
   phone: string;
   email: string;
   date_of_birth: string;
-  zip_code: number;
+  zip_code: string;
   pets?: Types.ObjectId[];
 }
 
@@ -17,7 +17,7 @@ export interface ITutorResponse {
   phone: string;
   email: string;
   date_of_birth: string;
-  zip_code: number;
+  zip_code: string;
   pets?: Types.ObjectId[];
 }
 

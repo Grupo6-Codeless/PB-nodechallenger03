@@ -13,7 +13,7 @@ const schema = new Schema<ITutor>(
     phone: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     date_of_birth: { type: String, required: true },
-    zip_code: { type: Number, required: true },
+    zip_code: { type: String, required: true },
     pets: [
       {
         type: Schema.Types.ObjectId,

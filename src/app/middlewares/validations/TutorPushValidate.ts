@@ -5,11 +5,19 @@ import { StatusCodes } from 'http-status-codes';
 export default (req: Request, res: Response, next: NextFunction): void => {
   try {
     const schema = Joi.object({
-      page: Joi.number().optional(),
-      limit: Joi.number().optional(),
+      name: Joi.string().min(3).max(30).required(),
+      phone: Joi.string().min(7).required(),
+      email: Joi.string()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+        .exist()
+        .required(),
+      password: Joi.string().exist().required(),
+      date_of_birth: Joi.date().required(),
+      zip_code: Joi.string().min(7).required(),
+      pets: Joi.forbidden(),
     });
 
-    const { error } = schema.validate(req.query, {
+    const { error } = schema.validate(req.body, {
       abortEarly: false,
     });
 
