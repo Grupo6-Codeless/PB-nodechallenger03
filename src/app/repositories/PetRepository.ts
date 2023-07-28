@@ -10,6 +10,10 @@ class PetRepository {
       .select('-_id')
       .exec();
   }
+
+  async delete(id: string): Promise<IPetResponse | null> {
+    return await PetSchema.findByIdAndDelete(id);
+  }
 }
 
 export default new PetRepository();

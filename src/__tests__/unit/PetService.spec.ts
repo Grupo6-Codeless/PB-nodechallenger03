@@ -90,5 +90,18 @@ describe('Unit. Pet Service', () => {
         pets: petId,
       });
     });
+    test('should return statusCode 202 && delete pet response with request correct', async () => {
+      const PetDeleteRepositoryMock = jest
+        .spyOn(PetRepository, 'delete')
+        .mockReturnValueOnce(PetServiceMock.delete());
+      const sut = PetService.delete;
+      const petid = '64c4140f520d4b5b58b60d9f';
+      const tutorid = '64c025e73d7493678bcccc8a';
+
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+      const actual = await sut(petid, tutorid);
+      expect(actual).toEqual(PetServiceMock.delete());
+      expect(PetDeleteRepositoryMock).toHaveBeenCalledWith(petid);
+    });
   });
 });

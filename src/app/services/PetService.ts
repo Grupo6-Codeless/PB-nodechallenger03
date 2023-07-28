@@ -23,6 +23,14 @@ class PetService {
 
     return result;
   }
+
+  async delete(petId: string, tutorId: string): Promise<void> {
+    if (!isValidObjectId(tutorId) || !isValidObjectId(petId)) {
+      throw new NotFoundError('Id not valid');
+    }
+    const result = await PetRepository.delete(petId);
+    if (result === null) throw new NotFoundError('Not Found pet');
+  }
 }
 
 export default new PetService();
