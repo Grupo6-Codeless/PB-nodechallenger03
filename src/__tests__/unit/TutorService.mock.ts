@@ -74,6 +74,10 @@ class TutorServiceMock {
       pets: [],
     };
   }
+
+  delete(): any {
+    return undefined;
+  }
 }
 
 export default new TutorServiceMock();
