@@ -61,7 +61,7 @@ class TutorController {
     try {
       const { id } = req.params;
       await TutorService.deleteTutorById(id);
-      return res.status(204).json();
+      return res.status(StatusCodes.NO_CONTENT).json();
     } catch (error) {
       if (!(error.statusCode === undefined)) {
         return res.status(error.statusCode).json({
@@ -69,7 +69,7 @@ class TutorController {
           details: error.message,
         });
       }
-      return res.status(500).json({ error: 'Error deleting tutor.' });
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json();
     }
   }
 }
