@@ -29,7 +29,6 @@ class PetService {
       throw new NotFoundError('Id not valid');
     }
     const result = await PetRepository.delete(petId);
-
     if (result === null) throw new NotFoundError('Not Found pet');
   }
 }
