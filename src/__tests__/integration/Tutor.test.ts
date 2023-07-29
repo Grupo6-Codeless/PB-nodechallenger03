@@ -8,8 +8,8 @@ describe('Integration. Tutor Routes', () => {
   const sutCreateTutor = {
     name: 'Teste Testadado',
     password: '1234',
-    phone: '6915617809232',
-    email: 'testetestadado8@paidepet.com',
+    phone: '6915611234232',
+    email: 'testetestadado10@paidepet.com',
     date_of_birth: '1993-12-12 10:10',
     zip_code: '61760000',
   };
