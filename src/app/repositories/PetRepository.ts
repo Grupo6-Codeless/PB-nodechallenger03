@@ -10,6 +10,10 @@ class PetRepository {
       .select('-_id')
       .exec();
   }
+
+  async post(payload: IPet): Promise<IPetResponse>{
+    return await PetSchema.create(payload);
+  }
 }
 
 export default new PetRepository();
