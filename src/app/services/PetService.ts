@@ -29,12 +29,11 @@ class PetService {
       throw new NotFoundError('Id not valid');
 
     const query = { $pull: { pets: petId } };
-    console.log('test');
     const tutor = await TutorRepository.deletePet(tutorId, query);
     if (tutor === null) throw new NotFoundError('Not found Tutor');
 
     const result = await PetRepository.delete(petId);
-    console.log('test2');
+
     if (result === null) throw new NotFoundError('Not found Pet');
 
     return result;
