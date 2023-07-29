@@ -48,6 +48,11 @@ class TutorController {
 
       return res.status(200).json(result);
     } catch (error) {
+      if (error.name === 'ValidationError') {
+        return res
+          .status(400)
+          .json(DuplicateKeyError(Object.keys(error.errors)));
+      }
       if (!(error.statusCode === undefined)) {
         return res.status(error.statusCode).json({
           message: error.name,

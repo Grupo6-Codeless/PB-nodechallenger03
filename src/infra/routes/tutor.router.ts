@@ -5,7 +5,7 @@ import GetValidation from '../../app/middlewares/validations/TutorGetValidate';
 import AuthVerify from '../../app/middlewares/AuthVerify';
 import PushValidation from '../../app/middlewares/validations/TutorPushValidate';
 import PutValidation from '../../app/middlewares/validations/TutorPutValidate';
-import PatchValidation from '../../app/middlewares/validations/PetPatchValidate';
+import PatchValidation from '../../app/middlewares/validations/TutorPatchValidate';
 
 const router = Router();
 

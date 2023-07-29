@@ -4,12 +4,16 @@ import Joi from 'joi';
 export default (req: Request, res: Response, next: NextFunction): void => {
   try {
     const Tutorschema = Joi.object({
-      name: Joi.string().optional().trim(),
-      phone: Joi.string().optional().trim(),
-      email: Joi.string().optional().trim(),
-      password: Joi.string().forbidden(),
+      name: Joi.string().min(3).max(30).optional(),
+      phone: Joi.string().min(7).optional(),
+      email: Joi.string()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+        .exist()
+        .optional(),
+      password: Joi.forbidden(),
       date_of_birth: Joi.date().optional(),
-      zip_code: Joi.string().optional().trim(),
+      zip_code: Joi.string().min(7).optional(),
+      pets: Joi.forbidden(),
     });
 
     const { error } = Tutorschema.validate(req.body, {
