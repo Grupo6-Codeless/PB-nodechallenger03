@@ -42,7 +42,6 @@ describe('Integration. Tutor Routes', () => {
 
       const { password, ...bodyExpect } = sutCreateTutor;
 
-      console.log(body);
       expect(statusCode).toBe(201);
       expect(body).toEqual({ _id: body._id, ...bodyExpect });
 
@@ -156,7 +155,6 @@ describe('Integration. Tutor Routes', () => {
         .set('Authorization', `Bearer ${objs.token}`)
         .send({ ...sutUpdateTutor, email, phone });
 
-      console.log(body);
       expect(statusCode).toBe(404);
       expect(body).toEqual({
         message: 'Not Found Error',
@@ -169,7 +167,6 @@ describe('Integration. Tutor Routes', () => {
         .set('Authorization', `Bearer ${objs.token}`)
         .send(sutUpdateTutor);
 
-      console.log(body);
       expect(statusCode).toBe(200);
       expect(body).toEqual(sutUpdateTutor);
     });
