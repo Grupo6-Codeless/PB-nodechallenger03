@@ -115,23 +115,24 @@ describe('Integration. Tutor Routes', () => {
       expect(body).toHaveProperty('docs');
     });
   });
-  describe('Integration. Tutor Routes', () => {
-    describe.skip('Tutor DELETE route', () => {
-      test('should return status code 204', async () => {
-        const id = '64c025e73d7493678bcccc8a';
-        const { body, statusCode } = await request(app).delete(`/tutor/${id}`);
-        expect(statusCode).toBe(204);
-        expect(body).toEqual({});
-      });
+  describe('Tutor DELETE route', () => {
+    test('should return status code 204', async () => {
+      const id = objs.idTutor;
+      const { body, statusCode } = await request(app)
+        .delete(`/tutor/${id}`)
+        .set('Authorization', `Bearer ${objs.token}`);
+      expect(statusCode).toBe(204);
+      expect(body).toEqual({});
     });
-  });
-  describe('Integration. Tutor Routes', () => {
-    describe.skip('Tutor DELETE route', () => {
-      test('should return status code 400', async () => {
-        const id = '64c025e73d7494678bcccc8a';
-        const { body, statusCode } = await request(app).delete(`/tutor/${id}`);
-        expect(statusCode).toBe(400);
-        expect(body).toEqual({});
+    test('should return status code 404', async () => {
+      const id = objs.idTutor;
+      const { body, statusCode } = await request(app)
+        .delete(`/tutor/${id}`)
+        .set('Authorization', `Bearer ${objs.token}`);
+      expect(statusCode).toBe(404);
+      expect(body).toEqual({
+        details: 'Not Tutor exists',
+        message: 'Not Found Error',
       });
     });
   });
