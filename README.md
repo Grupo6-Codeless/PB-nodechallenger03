@@ -46,14 +46,6 @@ $ npm install
 
 Create a .env file based on the .env.example file.
 
-`MONGO_DB_URL`
-`PORT`
-`TARGET`
-`JWT_SECRET`
-`JWT_SECRET_EXPIRES`
-
-Now that you already have the dependencies installed, just start the project.
-
 ```bash
 # Start the application at localhost:5000
 $ npm run dev
@@ -135,7 +127,7 @@ $ npm run dev
 ```
 
 ## Author
-
+<p>
 * <img src="https://avatars.githubusercontent.com/AntonioRdC" width=50><br>
   [Antonio Carvalho](https://github.com/AntonioRdC)
 
@@ -147,3 +139,4 @@ $ npm run dev
 
 * <img src="https://avatars.githubusercontent.com/tomazvinicius" width=50><br>
   [Vinicius Tomaz](https://github.com/tomazvinicius)
+</p>
