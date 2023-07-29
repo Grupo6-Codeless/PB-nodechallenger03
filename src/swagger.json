@@ -437,7 +437,7 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "example": "Jonas"
+                        "example": "Vinicius Tomaz"
                     },
                     "password": {
                         "type": "string",
@@ -445,15 +445,15 @@
                     },
                     "phone": {
                         "type": "string",
-                        "example": 69981312317
+                        "example": 69999326309
                     },
                     "email": {
                         "type": "string",
-                        "example": "antonio@email.com"
+                        "example": "viniciustomaz@email.com"
                     },
                     "date_of_birth": {
                         "type": "string",
-                        "example": "1993-12-12 10:10"
+                        "example": "2001-04-30 10:10"
                     },
                     "zip_code": {
                         "type": "string",
@@ -466,7 +466,7 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "example": "Jonas"
+                        "example": "Guilherme"
                     },
                     "phone": {
                         "type": "string",
@@ -474,7 +474,7 @@
                     },
                     "email": {
                         "type": "string",
-                        "example": "antonio@email.com"
+                        "example": "guilherme@email.com"
                     },
                     "date_of_birth": {
                         "type": "string",
@@ -491,19 +491,19 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "example": "Espartano"
+                        "example": "Milton"
                     },
                     "species": {
                         "type": "string",
-                        "example": "dog"
+                        "example": "cat"
                     },
                     "carry": {
                         "type": "string",
-                        "example": "p"
+                        "example": "m"
                     },
                     "weight": {
                         "type": "string",
-                        "example": 5
+                        "example": 6
                     },
                     "date_of_birth": {
                         "type": "string",
@@ -516,7 +516,7 @@
                 "properties": {
                     "email": {
                         "type": "string",
-                        "example": "antonio@email.com"
+                        "example": "viniciustomaz@email.com"
                     },
                     "password": {
                         "type": "string",
