@@ -1,5 +1,6 @@
 import TutorServiceMock from './TutorService.mock';
 import TutorService from '../../app/services/TutorService';
+import AuthService from '../../app/services/AuthService';
 import TutorRepository from '../../app/repositories/TutorRepository';
 import NotFoundError from '../../app/errors/NotFoundError';
 
@@ -43,6 +44,24 @@ describe('Unit. Tutor Service', () => {
 
       expect(actual).toEqual(TutorServiceMock.post());
       expect(tutorPostRepositoryMock).toHaveBeenCalledWith(body);
+    });
+  });
+  describe('Tutor Service.auth', () => {
+    test('should return statusCode 202 && all tutors response with request correct', async () => {
+      const authTutor = AuthService.create;
+
+      const body = {
+        email: 'antonio@paidepet.com',
+        password: '123456',
+      };
+
+      const tutorAuthRepositoryMock = jest
+        .spyOn(TutorRepository, 'getByEmailToAuth')
+        .mockReturnValue(TutorServiceMock.auth());
+      const actual = await authTutor(body);
+
+      expect(actual).toHaveProperty('access_token');
+      expect(tutorAuthRepositoryMock).toHaveBeenCalledWith(body.email);
     });
   });
   describe('Tutor Service.put', () => {

@@ -63,6 +63,14 @@ class TutorServiceMock {
     };
   }
 
+  auth(): any {
+    return {
+      _id: '64a32d48df2eaccf95fee709',
+      email: 'antonio@paidepet.com',
+      password: '$2a$12$.FxRywBeU13HDnnYzg5yIetuK/H7upccT7P2vhfdNRNQircYF23wy',
+    };
+  }
+
   put(): any {
     return {
       name: 'Geovanna',
