@@ -13,7 +13,7 @@ import UnauthorizedError from '../errors/UnauthorizedError';
 class TutorService {
   async post(req: ITutor): Promise<ITutorResponse> {
     const salt = await genSalt(10);
-    const hashpassword = await hash(req.password, salt);
+    const hashpassword = await hash(req.password as string, salt);
     req.password = hashpassword;
 
     const result = await TutorRepository.post(req);

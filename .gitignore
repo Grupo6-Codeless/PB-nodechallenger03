@@ -1,7 +1,6 @@
 node_modules
 dist
 .env
-dist
 .env.test
 .vscode
 package-lock.json

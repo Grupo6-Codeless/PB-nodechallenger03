@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import type { IAuth, IAuthResponse } from '../interfaces/IAuth';
@@ -13,7 +13,7 @@ class AuthService {
       throw new BadRequestError('Incorrect email or password, try again!');
 
     const verifyAuth = await bcrypt.compare(payload.password, tutor.password);
-    if (!verifyAuth)
+    if (verifyAuth === false)
       throw new BadRequestError('Incorrect email or password, try again!');
 
     const auth = jwt.sign(
