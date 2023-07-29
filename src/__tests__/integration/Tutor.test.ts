@@ -5,7 +5,16 @@ import App from '../../app';
 const app = new App().init();
 
 describe('Integration. Tutor Routes', () => {
-  describe.skip('Tutor POST route', () => {
+  const sutCreateTutor = {
+    name: 'Teste Testadado',
+    password: '1234',
+    phone: '6915617849232',
+    email: 'testetestadado7@paidepet.com',
+    date_of_birth: '1993-12-12 10:10',
+    zip_code: '61760000',
+  };
+  let idTutor: string;
+  describe('Tutor POST route', () => {
     test('should return statusCode 400 && tutors response with request required', async () => {
       const sut = {};
 
@@ -23,14 +32,6 @@ describe('Integration. Tutor Routes', () => {
         ],
       });
     });
-    const sutCreateTutor = {
-      name: 'Teste Testadado',
-      password: '1234',
-      phone: '69156767359232',
-      email: 'testetestadado4@paidepet.com',
-      date_of_birth: '1993-12-12 10:10',
-      zip_code: '61760000',
-    };
     test('should return statusCode 200 && tutors response with request correct', async () => {
       const { body, statusCode } = await request(app)
         .post('/tutor')
@@ -40,6 +41,8 @@ describe('Integration. Tutor Routes', () => {
 
       expect(statusCode).toBe(200);
       expect(body).toEqual({ _id: body._id, ...bodyExpect });
+
+      idTutor = body._id;
     });
     test('should return statusCode 400 && tutors response with tutor already exists', async () => {
       const { body, statusCode } = await request(app)
@@ -58,8 +61,22 @@ describe('Integration. Tutor Routes', () => {
   });
   let token: string;
   describe('Auth POST route', () => {
+    test('should return statusCode 400 && Bad Request Error with request incorrect', async () => {
+      const sut = { email: 'NÃOEXISTE@paidepet.com', password: 'NÃOEXISTE' };
+
+      const { body, statusCode } = await request(app).post('/auth').send(sut);
+
+      expect(statusCode).toBe(400);
+      expect(body).toEqual({
+        message: 'Bad Request Error',
+        details: 'Incorrect email or password, try again!',
+      });
+    });
     test('should return statusCode 200 && token with request correct', async () => {
-      const sut = { email: 'testetestadado2@paidepet.com', password: '1234' };
+      const sut = {
+        email: sutCreateTutor.email,
+        password: sutCreateTutor.password,
+      };
 
       const { body, statusCode } = await request(app).post('/auth').send(sut);
       token = body.access_token;
