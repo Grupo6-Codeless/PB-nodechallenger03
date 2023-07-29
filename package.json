@@ -3,7 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/AntonioRdC/PBnodeChallenge2",
-  "author": "Vinicius Tomaz <viniciustomax@gmail.com>",
+  "author": [
+    {
+      "name": "Vinicius Tomaz",
+      "email": "viniciustomax@gmail.com"
+    },
+    {
+      "name": "Antonio Ribeiro",
+      "email": "antonioribeiroamg@gmail.com"
+    },
+    {
+      "name": "Francisca Geovana",
+      "email": "francisca.silva.pb@compasso.com.br"
+    },
+    {
+      "name": "Guilherme Bezerra",
+      "email": "guilherme.bezerra.pb@compasso.com.br"
+    }
+  ],
   "license": "MIT",
   "scripts": {
     "start": "node dist/server.js",
