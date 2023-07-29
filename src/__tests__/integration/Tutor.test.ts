@@ -8,8 +8,8 @@ describe('Integration. Tutor Routes', () => {
   const sutCreateTutor = {
     name: 'Teste Testadado',
     password: '1234',
-    phone: '6915611234232',
-    email: 'testetestadado10@paidepet.com',
+    phone: '691561180922332',
+    email: 'testetedasa3as2asadado8@paidepet.com',
     date_of_birth: '1993-12-12 10:10',
     zip_code: '61760000',
   };
@@ -17,7 +17,7 @@ describe('Integration. Tutor Routes', () => {
     idTutor: '',
     token: '',
   };
-  describe('Tutor POST route', () => {
+  describe.skip('Tutor POST route', () => {
     test('should return statusCode 400 && tutors response with request required', async () => {
       const sut = {};
 

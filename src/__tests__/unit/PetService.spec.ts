@@ -109,5 +109,21 @@ describe('Unit. Pet Service', () => {
       expect(actual).toEqual(PetServiceMock.delete());
       expect(PetDeleteRepositoryMock).toHaveBeenCalledWith(petid);
     });
+    test('should return statusCode 400', async () => {
+      jest
+        .spyOn(TutorRepository, 'deletePet')
+        .mockReturnValueOnce(PetServiceMock.deletePet());
+      const PetDeleteRepositoryMock = jest
+        .spyOn(PetRepository, 'delete')
+        .mockReturnValueOnce(PetServiceMock.delete());
+
+      const sut = PetService.delete;
+      const petid = '64c424c75ffde056dbe3eb95';
+      const tutorid = '64c025e73d7493674bcccc8a';
+      const actual = await sut(petid, tutorid);
+
+      expect(actual).toEqual(PetServiceMock.deletePet());
+      expect(PetDeleteRepositoryMock).toHaveBeenCalledWith(petid);
+    });
   });
 });

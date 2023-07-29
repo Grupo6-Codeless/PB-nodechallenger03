@@ -20,6 +20,13 @@ class PetServiceMock {
       _id: '64c424c75ffde056dbe3eb95',
     };
   }
+
+  deletePetError(): any {
+    return {
+      message: 'Unauthorized Error',
+      details: 'Token Invalid',
+    };
+  }
 }
 
 export default new PetServiceMock();
