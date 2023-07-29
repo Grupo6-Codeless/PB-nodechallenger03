@@ -3,16 +3,16 @@ import request from 'supertest';
 import App from '../../app';
 
 const app = new App().init();
+export const sutCreateTutor = {
+  name: 'Teste Testadado',
+  password: '1234',
+  phone: '69152518922332',
+  email: 'testeteasadado8@paidepet.com',
+  date_of_birth: '1993-12-12 10:10',
+  zip_code: '61760000',
+};
 
 describe('Integration. Tutor Routes', () => {
-  const sutCreateTutor = {
-    name: 'Teste Testadado',
-    password: '1234',
-    phone: '691561180922332',
-    email: 'testetedasa3as2asadado8@paidepet.com',
-    date_of_birth: '1993-12-12 10:10',
-    zip_code: '61760000',
-  };
   const objs = {
     idTutor: '',
     token: '',
