@@ -1,6 +1,5 @@
 import type { Request, Response } from 'express';
 import TutorService from '../services/TutorService';
-import { StatusCodes } from 'http-status-codes';
 import DuplicateKeyError from '../errors/DuplicateKeyError';
 
 class TutorController {
@@ -16,14 +15,15 @@ class TutorController {
           details: error.message,
         });
       }
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error);
+
+      return res.status(500).json(error);
     }
   }
 
   async push(req: Request, res: Response): Promise<Response> {
     try {
       const result = await TutorService.post(req.body);
-      return res.status(StatusCodes.OK).json(result);
+      return res.status(200).json(result);
     } catch (error) {
       if (error.name === 'ValidationError') {
         return res
@@ -36,7 +36,8 @@ class TutorController {
           details: error.message,
         });
       }
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error);
+
+      return res.status(500).json(error);
     }
   }
 
@@ -53,6 +54,7 @@ class TutorController {
           details: error.message,
         });
       }
+
       return res.status(500).json(error);
     }
   }
@@ -61,7 +63,7 @@ class TutorController {
     try {
       const { id } = req.params;
       await TutorService.deleteTutorById(id);
-      return res.status(StatusCodes.NO_CONTENT).json();
+      return res.status(204).json();
     } catch (error) {
       if (!(error.statusCode === undefined)) {
         return res.status(error.statusCode).json({
@@ -69,7 +71,8 @@ class TutorController {
           details: error.message,
         });
       }
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json();
+
+      return res.status(500).json();
     }
   }
 }
