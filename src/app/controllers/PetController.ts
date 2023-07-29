@@ -47,7 +47,7 @@ class PetController {
       const { tutorId } = req.params;
       const result = await PetService.post(req.body, tutorId);
 
-      return res.status(201).json({ result, message: 'Pet added to tutor' });
+      return res.status(201).json(result);
     } catch (error) {
       if (error.name === 'ValidationError') {
         return res

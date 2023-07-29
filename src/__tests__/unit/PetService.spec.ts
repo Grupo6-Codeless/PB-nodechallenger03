@@ -46,7 +46,7 @@ describe('Unit. Pet Service', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(NotFoundError);
         expect(error.name).toBe('Not Found Error');
-        expect(error.message).toBe('Invalid id');
+        expect(error.message).toBe('Id not valid');
       }
     });
     test('should return statusCode 201 && created pet response with request correct', async () => {

@@ -40,7 +40,7 @@ class PetService {
   }
 
   async post(payload: IPet, tutorId: string): Promise<IPetResponse> {
-    if (!isValidObjectId(tutorId)) throw new NotFoundError('Invalid id');
+    if (!isValidObjectId(tutorId)) throw new NotFoundError('Id not valid');
 
     const tutor = await TutorRepository.findTutorById(tutorId);
     if (tutor === null) throw new NotFoundError('Tutor not found');

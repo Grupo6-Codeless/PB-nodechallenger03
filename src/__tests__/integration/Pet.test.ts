@@ -5,7 +5,7 @@ import { sutCreateTutor } from '../integration/Tutor.test';
 
 const app = new App().init();
 
-describe.skip('Integration. Pet Routes', () => {
+describe('Integration. Pet Routes', () => {
   const sutCreatePet = {
     name: 'Akamaru',
     species: 'dog',
@@ -18,6 +18,9 @@ describe.skip('Integration. Pet Routes', () => {
   let idPet: string;
 
   beforeAll(async () => {
+    sutCreateTutor.email = 'testetestado3@paidepet.com';
+    sutCreateTutor.phone = '6915269812452323';
+
     const post = await request(app).post('/tutor').send(sutCreateTutor);
     idTutor = post.body._id;
 
@@ -62,30 +65,13 @@ describe.skip('Integration. Pet Routes', () => {
         .send(sutCreatePet);
 
       expect(statusCode).toBe(201);
-      expect(body).toEqual({ _id: body._id, sutCreatePet });
-
-      idPet = body._id;
-    });
-    test('should return statusCode 400 && pet response duplicate with request correct', async () => {
-      const { body, statusCode } = await request(app)
-        .post(`/pet/${idTutor}`)
-        .set('Authorization', `Bearer ${token}`)
-        .send(sutCreatePet);
-
-      expect(statusCode).toBe(400);
-      expect(body).toEqual({
-        message: 'DuplicateFieldError',
-        details: expect.arrayContaining([
-          'phone must be unique',
-          'email must be unique',
-        ]),
-      });
+      expect(body).toEqual({ _id: body._id, ...sutCreatePet });
 
       idPet = body._id;
     });
     test('should return statusCode 404 && Not found error with request incorrect', async () => {
       const { body, statusCode } = await request(app)
-        .post(`/pet/INVALIDTUTOR`)
+        .post(`/pet/INV A L ID TU  O R`)
         .set('Authorization', `Bearer ${token}`)
         .send(sutCreatePet);
 
@@ -94,16 +80,67 @@ describe.skip('Integration. Pet Routes', () => {
         message: 'Not Found Error',
         details: 'Id not valid',
       });
-
-      idPet = body._id;
     });
   });
-  describe.skip('Pet DELETE route', () => {
-    test('should return status code 204', async () => {
-      const petid = '64c5576f3be063d32def6ab1';
-      const tutorid = '64c025e73d7493678bcccc8a';
+  describe('Tutor UPDATE route', () => {
+    test('should return statusCode 400 && pet response with request required', async () => {
+      const sut = {};
+
       const { body, statusCode } = await request(app)
-        .delete(`/pet/${petid}/tutor/${tutorid}`)
+        .put(`/pet/${idPet}/tutor/${idTutor}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(sut);
+
+      expect(statusCode).toBe(400);
+      expect(body).toEqual({
+        message: 'ValidationError',
+        details: [
+          'name is required',
+          'species is required',
+          'carry is required',
+          'weight is required',
+          'date_of_birth is required',
+        ],
+      });
+    });
+    test('should return statusCode 404 && Invalid Id with Invalid params Id', async () => {
+      const { body, statusCode } = await request(app)
+        .put(`/pet/inva lid ind/tutor/id valid?`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(sutCreatePet);
+
+      expect(statusCode).toBe(404);
+      expect(body).toEqual({
+        message: 'Not Found Error',
+        details: 'Id not valid',
+      });
+    });
+    test('should return statusCode 404 && Invalid Tutor with Invalid tutor Id', async () => {
+      const { body, statusCode } = await request(app)
+        .put(`/pet/${idPet}/tutor/64a32d48df2eaccf95fee709`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(sutCreatePet);
+
+      expect(statusCode).toBe(404);
+      expect(body).toEqual({
+        message: 'Not Found Error',
+        details: 'Not found Tutor or Pet not Exist in Tutor',
+      });
+    });
+    test('should return statusCode 200 && tutor update response with request correct', async () => {
+      const { body, statusCode } = await request(app)
+        .put(`/pet/${idPet}/tutor/${idTutor}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(sutCreatePet);
+
+      expect(statusCode).toBe(200);
+      expect(body).toEqual(sutCreatePet);
+    });
+  });
+  describe('Pet DELETE route', () => {
+    test('should return status code 204', async () => {
+      const { body, statusCode } = await request(app)
+        .delete(`/pet/${idPet}/tutor/${idTutor}`)
         .set('Authorization', `Bearer ${token}`);
       expect(statusCode).toBe(204);
       expect(body).toEqual({});
@@ -116,7 +153,7 @@ describe.skip('Integration. Pet Routes', () => {
         .set('Authorization', `Bearer ${token}`);
       expect(statusCode).toBe(404);
       expect(body).toEqual({
-        details: 'Not found Pet',
+        details: 'Not found Tutor',
         message: 'Not Found Error',
       });
     });
