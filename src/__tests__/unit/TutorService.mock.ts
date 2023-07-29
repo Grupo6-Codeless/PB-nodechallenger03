@@ -76,7 +76,16 @@ class TutorServiceMock {
   }
 
   delete(): any {
-    return undefined;
+    return {
+      _id: '64c424c75ffde056dbe3eb95',
+    };
+  }
+
+  getPetsById(): any {
+    return {
+      _id: '64c424c75ffde056dbe3eb95',
+      pets: [],
+    };
   }
 }
 

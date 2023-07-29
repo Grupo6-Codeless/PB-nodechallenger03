@@ -6,7 +6,7 @@ import TutorRepository from '../../app/repositories/TutorRepository';
 import NotFoundError from '../../app/errors/NotFoundError';
 
 describe('Unit. Pet Service', () => {
-  describe('Pet Service.get', () => {
+  describe('Pet Service.update', () => {
     test('should return statusCode 404 && NotfoundTutor with request params incorrect', async () => {
       const sut = PetService.update;
       const body = {
@@ -90,16 +90,22 @@ describe('Unit. Pet Service', () => {
         pets: petId,
       });
     });
+  });
+  describe('Pet Service.delete', () => {
     test('should return statusCode 202 && delete pet response with request correct', async () => {
+      jest
+        .spyOn(TutorRepository, 'deletePet')
+        .mockReturnValueOnce(PetServiceMock.deletePet());
       const PetDeleteRepositoryMock = jest
         .spyOn(PetRepository, 'delete')
         .mockReturnValueOnce(PetServiceMock.delete());
+
       const sut = PetService.delete;
       const petid = '64c4140f520d4b5b58b60d9f';
       const tutorid = '64c025e73d7493678bcccc8a';
 
-      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
       const actual = await sut(petid, tutorid);
+
       expect(actual).toEqual(PetServiceMock.delete());
       expect(PetDeleteRepositoryMock).toHaveBeenCalledWith(petid);
     });

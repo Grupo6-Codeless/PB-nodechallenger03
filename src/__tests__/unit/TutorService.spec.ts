@@ -94,13 +94,15 @@ describe('Unit. Tutor Service', () => {
   });
   describe('Tutor Service.delete', () => {
     test('should return Code 204 status with correct request', async () => {
+      jest
+        .spyOn(TutorRepository, 'getPetsById')
+        .mockReturnValueOnce(TutorServiceMock.getPetsById());
       const TutorDeleteRepositoryMock = jest
         .spyOn(TutorRepository, 'delete')
         .mockReturnValueOnce(TutorServiceMock.delete());
       const sut = TutorService.deleteTutorById;
       const id = '64c424c75ffde056dbe3eb95';
 
-      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
       const actual = await sut(id);
       expect(actual).toEqual(TutorServiceMock.delete());
       expect(TutorDeleteRepositoryMock).toHaveBeenCalledWith(id);
