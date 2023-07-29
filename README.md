@@ -136,26 +136,14 @@ $ npm run dev
 
 ## Author
 
-<div>
-  <img src="https://avatars.githubusercontent.com/AntonioRdC" width=115>
-  <br>
-  <a href="https://github.com/AntonioRdC">Antonio Carvalho</a>
-</div>
+* <img src="https://avatars.githubusercontent.com/AntonioRdC" width=50><br>
+  [Antonio Carvalho](https://github.com/AntonioRdC)
 
-<div>
-  <img src="https://avatars.githubusercontent.com/Guilgb" width=115>
-  <br>
-  <a href="https://github.com/Guilgb">Guilherme Bezerra</a>
-</div>
+* <img src="https://avatars.githubusercontent.com/Guilgb" width=50><br>
+  [Guilherme Bezerra](https://github.com/Guilgb)
 
-<div>
-  <img src="https://avatars.githubusercontent.com/Franc1scaGeovanna" width=115>
-  <br>
-  <a href="https://github.com/Franc1scaGeovanna">Franc1scaGeovanna</a>
-</div>
+* <img src="https://avatars.githubusercontent.com/Franc1scaGeovanna" width=50><br>
+  [Franc1scaGeovanna](https://github.com/Franc1scaGeovanna)
 
-<div>
-  <img src="https://avatars.githubusercontent.com/tomazvinicius" width=115>
-  <br>
-  <a href="https://github.com/tomazvinicius">Vinicius Tomaz</a>
-</div>
+* <img src="https://avatars.githubusercontent.com/tomazvinicius" width=50><br>
+  [Vinicius Tomaz](https://github.com/tomazvinicius)
