@@ -8,8 +8,8 @@ describe('Integration. Tutor Routes', () => {
   const sutCreateTutor = {
     name: 'Teste Testadado',
     password: '1234',
-    phone: '6915617849232',
-    email: 'testetestadado7@paidepet.com',
+    phone: '6915617809232',
+    email: 'testetestadado8@paidepet.com',
     date_of_birth: '1993-12-12 10:10',
     zip_code: '61760000',
   };
@@ -60,7 +60,7 @@ describe('Integration. Tutor Routes', () => {
     });
   });
   let token: string;
-  describe('Auth POST route', () => {
+  describe('Auth AUTH route', () => {
     test('should return statusCode 400 && Bad Request Error with request incorrect', async () => {
       const sut = { email: 'NÃOEXISTE@paidepet.com', password: 'NÃOEXISTE' };
 
