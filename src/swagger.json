@@ -8,7 +8,7 @@
             "email": "antonioribeiroamg@gmail.com",
             "url": "https://github.com/AntonioRdC/PBnodeChallenge2"
         },
-        "version": "2.0.0"
+        "version": "3.0.0"
     },
     "tags": [
         {
@@ -20,7 +20,12 @@
     ],
     "servers": [
         {
-            "url": "http://localhost:5000"
+            "url": "http://localhost:{port}",
+            "variables": {
+                "port": {
+                    "default": "5000"
+                }
+            }
         }
     ],
     "paths": {
@@ -186,6 +191,44 @@
                     }
                 ]
             },
+            "patch": {
+                "tags": [
+                    "Tutor"
+                ],
+                "summary": "Update opcional attributes of a tutor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TutorPut"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestError"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
             "delete": {
                 "tags": [
                     "Tutor"
@@ -286,6 +329,44 @@
                     "Pet"
                 ],
                 "summary": "Update all attributes of a pet",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PetPostAndPut"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequestError"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Pet"
+                ],
+                "summary": "Update opcional attributes of a pet",
                 "requestBody": {
                     "content": {
                         "application/json": {
