@@ -456,8 +456,8 @@
                         "example": "1993-12-12 10:10"
                     },
                     "zip_code": {
-                        "type": "number",
-                        "example": 61760000
+                        "type": "string",
+                        "example": "61760000"
                     }
                 }
             },
@@ -481,8 +481,8 @@
                         "example": "1993-12-12 10:10"
                     },
                     "zip_code": {
-                        "type": "number",
-                        "example": 61760000
+                        "type": "string",
+                        "example": "61760000"
                     }
                 }
             },
