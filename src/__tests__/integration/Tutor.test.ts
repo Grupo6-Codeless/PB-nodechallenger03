@@ -8,8 +8,8 @@ describe('Integration. Tutor Routes', () => {
   const sutCreateTutor = {
     name: 'Teste Testadado',
     password: '1234',
-    phone: '6915617809232',
-    email: 'testetestadado8@paidepet.com',
+    phone: '6915611809232',
+    email: 'testetedasaasasadado8@paidepet.com',
     date_of_birth: '1993-12-12 10:10',
     zip_code: '61760000',
   };
@@ -110,6 +110,26 @@ describe('Integration. Tutor Routes', () => {
 
       expect(statusCode).toBe(200);
       expect(body).toHaveProperty('docs');
+    });
+  });
+  describe('Integration. Tutor Routes', () => {
+    describe.skip('Tutor DELETE route', () => {
+      test('should return status code 204', async () => {
+        const id = '64c025e73d7493678bcccc8a';
+        const { body, statusCode } = await request(app).delete(`/tutor/${id}`);
+        expect(statusCode).toBe(204);
+        expect(body).toEqual({});
+      });
+    });
+  });
+  describe('Integration. Tutor Routes', () => {
+    describe.skip('Tutor DELETE route', () => {
+      test('should return status code 400', async () => {
+        const id = '64c025e73d7494678bcccc8a';
+        const { body, statusCode } = await request(app).delete(`/tutor/${id}`);
+        expect(statusCode).toBe(400);
+        expect(body).toEqual({});
+      });
     });
   });
 });
