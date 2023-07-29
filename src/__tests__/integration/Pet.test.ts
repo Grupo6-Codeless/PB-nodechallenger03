@@ -82,7 +82,7 @@ describe('Integration. Pet Routes', () => {
       });
     });
   });
-  describe('Tutor UPDATE route', () => {
+  describe('Pet UPDATE route', () => {
     test('should return statusCode 400 && pet response with request required', async () => {
       const sut = {};
 
