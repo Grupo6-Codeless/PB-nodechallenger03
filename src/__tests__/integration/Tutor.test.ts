@@ -13,7 +13,10 @@ describe('Integration. Tutor Routes', () => {
     date_of_birth: '1993-12-12 10:10',
     zip_code: '61760000',
   };
-  let idTutor: string;
+  const objs = {
+    idTutor: '',
+    token: '',
+  };
   describe('Tutor POST route', () => {
     test('should return statusCode 400 && tutors response with request required', async () => {
       const sut = {};
@@ -32,6 +35,7 @@ describe('Integration. Tutor Routes', () => {
         ],
       });
     });
+
     test('should return statusCode 200 && tutors response with request correct', async () => {
       const { body, statusCode } = await request(app)
         .post('/tutor')
@@ -42,7 +46,7 @@ describe('Integration. Tutor Routes', () => {
       expect(statusCode).toBe(200);
       expect(body).toEqual({ _id: body._id, ...bodyExpect });
 
-      idTutor = body._id;
+      objs.idTutor = body._id;
     });
     test('should return statusCode 400 && tutors response with tutor already exists', async () => {
       const { body, statusCode } = await request(app)
@@ -59,7 +63,6 @@ describe('Integration. Tutor Routes', () => {
       });
     });
   });
-  let token: string;
   describe('Auth AUTH route', () => {
     test('should return statusCode 400 && Bad Request Error with request incorrect', async () => {
       const sut = { email: 'NÃOEXISTE@paidepet.com', password: 'NÃOEXISTE' };
@@ -79,7 +82,7 @@ describe('Integration. Tutor Routes', () => {
       };
 
       const { body, statusCode } = await request(app).post('/auth').send(sut);
-      token = body.access_token;
+      objs.token = body.access_token;
 
       expect(statusCode).toBe(201);
       expect(body).toHaveProperty('access_token');
@@ -91,7 +94,7 @@ describe('Integration. Tutor Routes', () => {
 
       const { body, statusCode } = await request(app)
         .get('/tutors')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Authorization', `Bearer ${objs.token}`)
         .query(sut);
 
       expect(statusCode).toBe(400);
@@ -105,7 +108,7 @@ describe('Integration. Tutor Routes', () => {
 
       const { body, statusCode } = await request(app)
         .get('/tutors')
-        .set('Authorization', `Bearer ${token}`)
+        .set('Authorization', `Bearer ${objs.token}`)
         .query(sut);
 
       expect(statusCode).toBe(200);
