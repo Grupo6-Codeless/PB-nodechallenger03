@@ -23,6 +23,24 @@ class PetService {
 
     return result;
   }
+
+  async post(payload: IPet, tutorId: string): Promise<IPetResponse> {
+    if(!isValidObjectId(tutorId)){
+      throw new NotFoundError('Invalid id');
+    }
+
+    const tutor = await TutorRepository.findTutorById(tutorId);
+    if (tutor === null) {
+      throw new NotFoundError('Tutor not found');
+    }
+
+    const result = await PetRepository.post(payload);
+    const query = { $push: { pets: [result._id] }};
+
+    await TutorRepository.updatePet(tutorId, query);
+   
+    return result;
+  }
 }
 
 export default new PetService();

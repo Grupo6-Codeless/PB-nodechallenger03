@@ -30,6 +30,14 @@ class TutorRepository {
     .select('-_id -password')
     .exec();
   }
+
+  async updatePet(tutorId: string, query: object): Promise<ITutorResponse | null> {
+    return await TutorSchema.findByIdAndUpdate(tutorId, query);
+  }
+
+  async findTutorById(tutorId: string): Promise<ITutorResponse | null> {
+    return await TutorSchema.findById(tutorId);
+  }
 }
 
 export default new TutorRepository();
