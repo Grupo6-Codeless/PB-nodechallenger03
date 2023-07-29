@@ -17,7 +17,7 @@ describe('Integration. Tutor Routes', () => {
     idTutor: '',
     token: '',
   };
-  describe.skip('Tutor POST route', () => {
+  describe('Tutor POST route', () => {
     test('should return statusCode 400 && tutors response with request required', async () => {
       const sut = {};
 
