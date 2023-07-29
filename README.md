@@ -23,6 +23,7 @@ So, you have this new mission, to build the POC foundations of this brand new mi
 <p>
   <img src="https://user-images.githubusercontent.com/65569815/182266557-f2d0c589-fe31-4d65-b867-cb40385066a0.svg" width="100">
   <img src="https://user-images.githubusercontent.com/65569815/182253645-6966537e-18ed-4c47-974b-22510cc3d834.png" width="100">
+  <img src="https://github.com/Grupo6-Codeless/PB-nodechallenger03/assets/70348917/4336366a-175b-4f10-aa0b-d40fa80dd044" width="100">
 </p>
 
 ## Requirements
@@ -127,7 +128,6 @@ $ npm run dev
 ```
 
 ## Author
-<p>
 * <img src="https://avatars.githubusercontent.com/AntonioRdC" width=50><br>
   [Antonio Carvalho](https://github.com/AntonioRdC)
 
@@ -139,4 +139,3 @@ $ npm run dev
 
 * <img src="https://avatars.githubusercontent.com/tomazvinicius" width=50><br>
   [Vinicius Tomaz](https://github.com/tomazvinicius)
-</p>
