@@ -24,32 +24,6 @@ describe('Integration. Pet Routes', () => {
       .delete(`/tutor/${idTutor}`)
       .set('Authorization', `Bearer ${token}`);
   });
-
-  describe('Tutor GET route', () => {
-    test('should return statusCode 400 && ValidateError response with query incorrect', async () => {
-      const sut = { page: 'ValidateError', limit: 'ValidateError' };
-
-      const { body, statusCode } = await request(app)
-        .get('/tutors')
-        .set('Authorization', `Bearer ${token}`)
-        .query(sut);
-      expect(statusCode).toBe(400);
-      expect(body).toEqual({
-        message: 'ValidationError',
-        details: ['page must be a number', 'limit must be a number'],
-      });
-    });
-    test('should return statusCode 200 && all tutors response with request correct', async () => {
-      const sut = { page: 2, limit: 10 };
-
-      const { body, statusCode } = await request(app)
-        .get('/tutors')
-        .set('Authorization', `Bearer ${token}`)
-        .query(sut);
-      expect(statusCode).toBe(200);
-      expect(body).toHaveProperty('docs');
-    });
-  });
   describe.skip('Pet DELETE route', () => {
     test('should return status code 204', async () => {
       const petid = '64c4236ad4e344efb1111e46';

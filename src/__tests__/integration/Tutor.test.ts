@@ -6,8 +6,8 @@ const app = new App().init();
 export const sutCreateTutor = {
   name: 'Teste Testadado',
   password: '1234',
-  phone: '69152518922332',
-  email: 'testeteasadado8@paidepet.com',
+  phone: '69152518912332',
+  email: 'testeteasadado20@paidepet.com',
   date_of_birth: '1993-12-12 10:10',
   zip_code: '61760000',
 };
