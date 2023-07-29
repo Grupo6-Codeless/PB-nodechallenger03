@@ -91,9 +91,19 @@ class TutorServiceMock {
 
   getPetsById(): any {
     return {
-      _id: '64c424c75ffde056dbe3eb95',
+      _id: '64a32d48df2eaccf95fee709',
       pets: [],
     };
+  }
+
+  TutorFindTutorByIdRepositoryMock(): any {
+    return {
+      _id: '64a32d48df2eaccf95fee709',
+    };
+  }
+
+  nullMock(): any {
+    return null;
   }
 }
 

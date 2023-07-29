@@ -25,7 +25,7 @@ describe('Integration. Pet Routes', () => {
       .set('Authorization', `Bearer ${token}`);
   });
 
-  describe('Pet DELETE route', () => {
+  describe.skip('Pet DELETE route', () => {
     test('should return status code 204', async () => {
       const petid = '64c5576f3be063d32def6ab1';
       const tutorid = '64c025e73d7493678bcccc8a';

@@ -67,11 +67,13 @@ class TutorRepository {
     tutorId: string,
     query: object
   ): Promise<ITutorResponse | null> {
-    return await TutorSchema.findByIdAndUpdate(tutorId, query);
+    return await TutorSchema.findByIdAndUpdate(tutorId, query)
+      .select('_id')
+      .lean();
   }
 
   async findTutorById(tutorId: string): Promise<ITutorResponse | null> {
-    return await TutorSchema.findById(tutorId);
+    return await TutorSchema.findById(tutorId).select('_id').lean();
   }
 }
 export default new TutorRepository();

@@ -6,6 +6,83 @@ import TutorRepository from '../../app/repositories/TutorRepository';
 import NotFoundError from '../../app/errors/NotFoundError';
 
 describe('Unit. Pet Service', () => {
+  describe('Pet Service.create', () => {
+    test('should return statusCode 404 && NotfoundTutor with request params incorrect', async () => {
+      jest
+        .spyOn(TutorRepository, 'findTutorById')
+        .mockReturnValueOnce(TutorServiceMock.nullMock());
+
+      const sut = PetService.post;
+      const body = {
+        name: 'Akamaru',
+        species: 'dog',
+        carry: 'p',
+        weight: 10,
+        date_of_birth: '1993-12-12 10:10',
+      };
+      const tutorId = '64a32d48df2eaccf95fee709';
+
+      try {
+        await sut(body, tutorId);
+      } catch (error) {
+        expect(error).toBeInstanceOf(NotFoundError);
+        expect(error.name).toBe('Not Found Error');
+        expect(error.message).toBe('Tutor not found');
+      }
+    });
+    test('should return statusCode 404 && Invalid Id error with request incorrect', async () => {
+      const sut = PetService.post;
+      const body = {
+        name: 'Akamaru',
+        species: 'dog',
+        carry: 'p',
+        weight: 10,
+        date_of_birth: '1993-12-12 10:10',
+      };
+      const tutorId = 'IDNÃOVALIDO';
+
+      try {
+        await sut(body, tutorId);
+      } catch (error) {
+        expect(error).toBeInstanceOf(NotFoundError);
+        expect(error.name).toBe('Not Found Error');
+        expect(error.message).toBe('Invalid id');
+      }
+    });
+    test('should return statusCode 201 && created pet response with request correct', async () => {
+      const TutorFindTutorByIdRepositoryMock = jest
+        .spyOn(TutorRepository, 'findTutorById')
+        .mockReturnValueOnce(
+          TutorServiceMock.TutorFindTutorByIdRepositoryMock()
+        );
+      jest
+        .spyOn(PetRepository, 'post')
+        .mockReturnValueOnce(PetServiceMock.PetPostRepositoryMock());
+      const TutorupdatePetRepositoryMock = jest
+        .spyOn(TutorRepository, 'updatePet')
+        .mockReturnValueOnce(
+          TutorServiceMock.TutorFindTutorByIdRepositoryMock()
+        );
+
+      const sut = PetService.post;
+      const body = {
+        name: 'Akamaru',
+        species: 'dog',
+        carry: 'p',
+        weight: 10,
+        date_of_birth: '1993-12-12 10:10',
+      };
+      const tutorId = '64a32d48df2eaccf95fee709';
+
+      const actual = await sut(body, tutorId);
+
+      expect(actual).toEqual(PetServiceMock.PetPostRepositoryMock());
+      expect(TutorFindTutorByIdRepositoryMock).toHaveBeenCalledWith(tutorId);
+      expect(TutorupdatePetRepositoryMock).toHaveBeenCalledWith(tutorId, {
+        $push: { pets: ['64a32d48df2eaccf95fee709'] },
+      });
+    });
+  });
   describe('Pet Service.update', () => {
     test('should return statusCode 404 && NotfoundTutor with request params incorrect', async () => {
       const sut = PetService.update;
