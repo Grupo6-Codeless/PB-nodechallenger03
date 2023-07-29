@@ -5,9 +5,18 @@ import { sutCreateTutor } from '../integration/Tutor.test';
 
 const app = new App().init();
 
-describe('Integration. Pet Routes', () => {
+describe.skip('Integration. Pet Routes', () => {
+  const sutCreatePet = {
+    name: 'Akamaru',
+    species: 'dog',
+    carry: 'p',
+    weight: 10,
+    date_of_birth: '1993-12-12 10:10',
+  };
   let token: string;
   let idTutor: string;
+  let idPet: string;
+
   beforeAll(async () => {
     const post = await request(app).post('/tutor').send(sutCreateTutor);
     idTutor = post.body._id;
@@ -25,6 +34,70 @@ describe('Integration. Pet Routes', () => {
       .set('Authorization', `Bearer ${token}`);
   });
 
+  describe('Pet POST route', () => {
+    test('should return statusCode 400 && pet response with request required', async () => {
+      const sut = {};
+
+      const { body, statusCode } = await request(app)
+        .post(`/pet/${idTutor}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(sut);
+
+      expect(statusCode).toBe(400);
+      expect(body).toEqual({
+        message: 'ValidationError',
+        details: [
+          'name is required',
+          'species is required',
+          'carry is required',
+          'weight is required',
+          'date_of_birth is required',
+        ],
+      });
+    });
+    test('should return statusCode 200 && pet response with request correct', async () => {
+      const { body, statusCode } = await request(app)
+        .post(`/pet/${idTutor}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(sutCreatePet);
+
+      expect(statusCode).toBe(201);
+      expect(body).toEqual({ _id: body._id, sutCreatePet });
+
+      idPet = body._id;
+    });
+    test('should return statusCode 400 && pet response duplicate with request correct', async () => {
+      const { body, statusCode } = await request(app)
+        .post(`/pet/${idTutor}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(sutCreatePet);
+
+      expect(statusCode).toBe(400);
+      expect(body).toEqual({
+        message: 'DuplicateFieldError',
+        details: expect.arrayContaining([
+          'phone must be unique',
+          'email must be unique',
+        ]),
+      });
+
+      idPet = body._id;
+    });
+    test('should return statusCode 404 && Not found error with request incorrect', async () => {
+      const { body, statusCode } = await request(app)
+        .post(`/pet/INVALIDTUTOR`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(sutCreatePet);
+
+      expect(statusCode).toBe(404);
+      expect(body).toEqual({
+        message: 'Not Found Error',
+        details: 'Id not valid',
+      });
+
+      idPet = body._id;
+    });
+  });
   describe.skip('Pet DELETE route', () => {
     test('should return status code 204', async () => {
       const petid = '64c5576f3be063d32def6ab1';

@@ -6,7 +6,7 @@ const app = new App().init();
 export const sutCreateTutor = {
   name: 'Teste Testado',
   password: '1234',
-  phone: '69152518912332',
+  phone: '6915251812452323',
   email: 'testetestado@paidepet.com',
   date_of_birth: '1993-12-12 10:10',
   zip_code: '61760000',
@@ -35,15 +35,15 @@ describe('Integration. Tutor Routes', () => {
         ],
       });
     });
-
-    test('should return statusCode 200 && tutors response with request correct', async () => {
+    test('should return statusCode 201 && tutors response with request correct', async () => {
       const { body, statusCode } = await request(app)
         .post('/tutor')
         .send(sutCreateTutor);
 
       const { password, ...bodyExpect } = sutCreateTutor;
 
-      expect(statusCode).toBe(200);
+      console.log(body);
+      expect(statusCode).toBe(201);
       expect(body).toEqual({ _id: body._id, ...bodyExpect });
 
       objs.idTutor = body._id;
@@ -117,8 +117,6 @@ describe('Integration. Tutor Routes', () => {
   });
   describe('Tutor UPDATE route', () => {
     const { password, ...sutUpdateTutor } = sutCreateTutor;
-    sutUpdateTutor.email = 'testetestado1@paidepet.com';
-    sutUpdateTutor.phone = '69152518512332';
     test('should return statusCode 400 && ValidateError with request incomplete', async () => {
       const sut = {};
 
@@ -151,11 +149,14 @@ describe('Integration. Tutor Routes', () => {
       });
     });
     test('should return statusCode 404 && Invalid Tutor with Invalid tutor Id', async () => {
+      const email = 'testetestado2@paidepet.com';
+      const phone = '69152518512332';
       const { body, statusCode } = await request(app)
         .put(`/tutor/64c424c75ffde056dbe31234`)
         .set('Authorization', `Bearer ${objs.token}`)
-        .send(sutUpdateTutor);
+        .send({ ...sutUpdateTutor, email, phone });
 
+      console.log(body);
       expect(statusCode).toBe(404);
       expect(body).toEqual({
         message: 'Not Found Error',
@@ -168,23 +169,22 @@ describe('Integration. Tutor Routes', () => {
         .set('Authorization', `Bearer ${objs.token}`)
         .send(sutUpdateTutor);
 
+      console.log(body);
       expect(statusCode).toBe(200);
       expect(body).toEqual(sutUpdateTutor);
     });
   });
   describe('Tutor DELETE route', () => {
     test('should return status code 204', async () => {
-      const id = objs.idTutor;
       const { body, statusCode } = await request(app)
-        .delete(`/tutor/${id}`)
+        .delete(`/tutor/${objs.idTutor}`)
         .set('Authorization', `Bearer ${objs.token}`);
       expect(statusCode).toBe(204);
       expect(body).toEqual({});
     });
     test('should return status code 404', async () => {
-      const id = objs.idTutor;
       const { body, statusCode } = await request(app)
-        .delete(`/tutor/${id}`)
+        .delete(`/tutor/${objs.idTutor}`)
         .set('Authorization', `Bearer ${objs.token}`);
       expect(statusCode).toBe(404);
       expect(body).toEqual({

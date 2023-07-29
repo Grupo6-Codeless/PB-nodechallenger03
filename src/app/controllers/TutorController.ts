@@ -23,7 +23,7 @@ class TutorController {
   async push(req: Request, res: Response): Promise<Response> {
     try {
       const result = await TutorService.post(req.body);
-      return res.status(200).json(result);
+      return res.status(201).json(result);
     } catch (error) {
       if (error.name === 'ValidationError') {
         return res
