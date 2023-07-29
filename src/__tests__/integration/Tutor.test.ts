@@ -4,10 +4,10 @@ import App from '../../app';
 
 const app = new App().init();
 export const sutCreateTutor = {
-  name: 'Teste Testadado',
+  name: 'Teste Testado',
   password: '1234',
   phone: '69152518912332',
-  email: 'testeteasadado20@paidepet.com',
+  email: 'testetestado@paidepet.com',
   date_of_birth: '1993-12-12 10:10',
   zip_code: '61760000',
 };
@@ -113,6 +113,63 @@ describe('Integration. Tutor Routes', () => {
 
       expect(statusCode).toBe(200);
       expect(body).toHaveProperty('docs');
+    });
+  });
+  describe('Tutor UPDATE route', () => {
+    const { password, ...sutUpdateTutor } = sutCreateTutor;
+    sutUpdateTutor.email = 'testetestado1@paidepet.com';
+    sutUpdateTutor.phone = '69152518512332';
+    test('should return statusCode 400 && ValidateError with request incomplete', async () => {
+      const sut = {};
+
+      const { body, statusCode } = await request(app)
+        .put(`/tutor/${objs.idTutor}`)
+        .set('Authorization', `Bearer ${objs.token}`)
+        .send(sut);
+      expect(statusCode).toBe(400);
+      expect(body).toEqual({
+        message: 'ValidationError',
+        details: [
+          'name is required',
+          'phone is required',
+          'email is required',
+          'date_of_birth is required',
+          'zip_code is required',
+        ],
+      });
+    });
+    test('should return statusCode 404 && Invalid Id with Invalid params Id', async () => {
+      const { body, statusCode } = await request(app)
+        .put(`/tutor/INVALIDID`)
+        .set('Authorization', `Bearer ${objs.token}`)
+        .send(sutUpdateTutor);
+
+      expect(statusCode).toBe(404);
+      expect(body).toEqual({
+        message: 'Not Found Error',
+        details: 'Id not valid',
+      });
+    });
+    test('should return statusCode 404 && Invalid Tutor with Invalid tutor Id', async () => {
+      const { body, statusCode } = await request(app)
+        .put(`/tutor/64c424c75ffde056dbe31234`)
+        .set('Authorization', `Bearer ${objs.token}`)
+        .send(sutUpdateTutor);
+
+      expect(statusCode).toBe(404);
+      expect(body).toEqual({
+        message: 'Not Found Error',
+        details: 'Tutor not found',
+      });
+    });
+    test('should return statusCode 200 && tutor update response with request correct', async () => {
+      const { body, statusCode } = await request(app)
+        .put(`/tutor/${objs.idTutor}`)
+        .set('Authorization', `Bearer ${objs.token}`)
+        .send(sutUpdateTutor);
+
+      expect(statusCode).toBe(200);
+      expect(body).toEqual(sutUpdateTutor);
     });
   });
   describe('Tutor DELETE route', () => {
