@@ -24,7 +24,7 @@ class PetService {
     return result;
   }
 
-  async delete(petId: string, tutorId: string): Promise<IPetResponse> {
+  async delete(petId: string, tutorId: string): Promise<IPetResponse | null> {
     if (!isValidObjectId(tutorId) || !isValidObjectId(petId))
       throw new NotFoundError('Id not valid');
 
@@ -35,6 +35,24 @@ class PetService {
     const result = await PetRepository.delete(petId);
 
     if (result === null) throw new NotFoundError('Not found Pet');
+
+    return result;
+  }
+
+  async post(payload: IPet, tutorId: string): Promise<IPetResponse> {
+    if (!isValidObjectId(tutorId)) {
+      throw new NotFoundError('Invalid id');
+    }
+
+    const tutor = await TutorRepository.findTutorById(tutorId);
+    if (tutor === null) {
+      throw new NotFoundError('Tutor not found');
+    }
+
+    const result = await PetRepository.post(payload);
+    const query = { $push: { pets: [result._id] } };
+
+    await TutorRepository.updatePet(tutorId, query);
 
     return result;
   }

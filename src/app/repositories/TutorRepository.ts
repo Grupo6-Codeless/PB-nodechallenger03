@@ -62,5 +62,16 @@ class TutorRepository {
   async getPetsById(tutorId: string): Promise<ITutorResponse | null> {
     return await TutorSchema.findById(tutorId).select('pets').lean();
   }
+
+  async updatePet(
+    tutorId: string,
+    query: object
+  ): Promise<ITutorResponse | null> {
+    return await TutorSchema.findByIdAndUpdate(tutorId, query);
+  }
+
+  async findTutorById(tutorId: string): Promise<ITutorResponse | null> {
+    return await TutorSchema.findById(tutorId);
+  }
 }
 export default new TutorRepository();

@@ -14,6 +14,10 @@ class PetRepository {
   async delete(id: string): Promise<IPetResponse | null> {
     return await PetSchema.findByIdAndDelete(id);
   }
+
+  async post(payload: IPet): Promise<IPetResponse> {
+    return await PetSchema.create(payload);
+  }
 }
 
 export default new PetRepository();
