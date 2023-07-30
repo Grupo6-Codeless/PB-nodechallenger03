@@ -4,9 +4,8 @@
         "title": "Compass Tutor MicroService",
         "description": "A client hired Compass to build a new microservice for its veterinary franchise. This microservice will be used by all the clinics they own for internal client and attendances management. So, you have this new mission, to build the POC foundations of this brand new microservice, so the sales and management team can have the primary technical view of the needs that the client has.",
         "contact": {
-            "name": "Antônio Ribeiro",
-            "email": "antonioribeiroamg@gmail.com",
-            "url": "https://github.com/AntonioRdC/PBnodeChallenge2"
+            "name": "Grupo 06 - Codeless",
+            "url": "https://github.com/Grupo6-Codeless/PB-nodechallenger03"
         },
         "version": "3.0.0"
     },
