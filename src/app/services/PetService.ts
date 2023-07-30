@@ -28,12 +28,21 @@ class PetService {
     if (!isValidObjectId(tutorId) || !isValidObjectId(petId))
       throw new NotFoundError('Id not valid');
 
-    const query = { $pull: { pets: petId } };
-    const tutor = await TutorRepository.deletePet(tutorId, query);
-    if (tutor === null) throw new NotFoundError('Not found Tutor');
+    const queryFindTutorOfPet = { _id: tutorId, pets: petId };
+    const tutorFindTutorOfPet = await TutorRepository.findTutorOfPet(
+      queryFindTutorOfPet
+    );
+    if (tutorFindTutorOfPet === null)
+      throw new NotFoundError('Not found Tutor or Pet not Exist in Tutor');
+
+    const queryDeletePet = { $pull: { pets: petId } };
+    const tutorDeletePet = await TutorRepository.deletePet(
+      tutorId,
+      queryDeletePet
+    );
+    if (tutorDeletePet === null) throw new NotFoundError('Not found Tutor');
 
     const result = await PetRepository.delete(petId);
-
     if (result === null) throw new NotFoundError('Not found Pet');
 
     return result;

@@ -171,6 +171,11 @@ describe('Unit. Pet Service', () => {
   describe('Pet Service.delete', () => {
     test('should return statusCode 202 && delete pet response with request correct', async () => {
       jest
+        .spyOn(TutorRepository, 'findTutorOfPet')
+        .mockReturnValueOnce(
+          TutorServiceMock.TutorFindTutorOfPetRepositoryMockRequestCorrect()
+        );
+      jest
         .spyOn(TutorRepository, 'deletePet')
         .mockReturnValueOnce(PetServiceMock.deletePet());
       const PetDeleteRepositoryMock = jest
@@ -187,6 +192,11 @@ describe('Unit. Pet Service', () => {
       expect(PetDeleteRepositoryMock).toHaveBeenCalledWith(petid);
     });
     test('should return statusCode 400', async () => {
+      jest
+        .spyOn(TutorRepository, 'findTutorOfPet')
+        .mockReturnValueOnce(
+          TutorServiceMock.TutorFindTutorOfPetRepositoryMockRequestCorrect()
+        );
       jest
         .spyOn(TutorRepository, 'deletePet')
         .mockReturnValueOnce(PetServiceMock.deletePet());

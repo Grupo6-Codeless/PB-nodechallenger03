@@ -153,7 +153,7 @@ describe('Integration. Pet Routes', () => {
         .set('Authorization', `Bearer ${token}`);
       expect(statusCode).toBe(404);
       expect(body).toEqual({
-        details: 'Not found Tutor',
+        details: 'Not found Tutor or Pet not Exist in Tutor',
         message: 'Not Found Error',
       });
     });

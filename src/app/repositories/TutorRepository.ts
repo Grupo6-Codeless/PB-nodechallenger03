@@ -54,9 +54,7 @@ class TutorRepository {
     tutorId: string,
     query: object
   ): Promise<ITutorResponse | null> {
-    return await TutorSchema.findByIdAndUpdate(tutorId, query)
-      .select('_id')
-      .lean();
+    return await TutorSchema.findByIdAndUpdate(tutorId, query);
   }
 
   async getPetsById(tutorId: string): Promise<ITutorResponse | null> {
