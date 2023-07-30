@@ -5,7 +5,7 @@ export interface IPet {
   species: string;
   carry: string;
   weight: number;
-  date_of_birth: string;
+  date_of_birth: Date;
 }
 
 export interface IPetResponse {
@@ -14,5 +14,5 @@ export interface IPetResponse {
   species: string;
   carry: string;
   weight: number;
-  date_of_birth: string;
+  date_of_birth: Date;
 }

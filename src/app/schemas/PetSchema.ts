@@ -9,7 +9,7 @@ const schema = new Schema<IPet>(
     species: { type: String, required: true },
     carry: { type: String, required: true },
     weight: { type: Number, required: true },
-    date_of_birth: { type: String, required: true },
+    date_of_birth: { type: Date, required: true },
   },
   { versionKey: false }
 );

@@ -11,7 +11,7 @@ describe('Integration. Pet Routes', () => {
     species: 'dog',
     carry: 'p',
     weight: 10,
-    date_of_birth: '1993-12-12 10:10',
+    date_of_birth: '2020-11-14T00:00:00.000Z',
   };
   let token: string;
   let idTutor: string;

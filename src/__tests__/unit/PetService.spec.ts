@@ -18,7 +18,7 @@ describe('Unit. Pet Service', () => {
         species: 'dog',
         carry: 'p',
         weight: 10,
-        date_of_birth: '1993-12-12 10:10',
+        date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       };
       const tutorId = '64a32d48df2eaccf95fee709';
 
@@ -37,7 +37,7 @@ describe('Unit. Pet Service', () => {
         species: 'dog',
         carry: 'p',
         weight: 10,
-        date_of_birth: '1993-12-12 10:10',
+        date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       };
       const tutorId = 'IDNÃOVALIDO';
 
@@ -70,7 +70,7 @@ describe('Unit. Pet Service', () => {
         species: 'dog',
         carry: 'p',
         weight: 10,
-        date_of_birth: '1993-12-12 10:10',
+        date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       };
       const tutorId = '64a32d48df2eaccf95fee709';
 
@@ -91,7 +91,7 @@ describe('Unit. Pet Service', () => {
         species: 'dog',
         carry: 'p',
         weight: 10,
-        date_of_birth: '1993-12-12 10:10',
+        date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       };
       const petId = 'IdNotValid';
       const tutorId = 'IdNotValid';
@@ -120,7 +120,7 @@ describe('Unit. Pet Service', () => {
         species: 'dog',
         carry: 'p',
         weight: 10,
-        date_of_birth: '1993-12-12 10:10',
+        date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       };
       const petId = '64a34a8ff0e6d55acba1d5b8';
       const tutorId = '64a32d48df2eaccf95fee709';
@@ -151,7 +151,7 @@ describe('Unit. Pet Service', () => {
         species: 'dog',
         carry: 'p',
         weight: 10,
-        date_of_birth: '1993-12-12 10:10',
+        date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       };
       const petId = '64a34a8ff0e6d55acba1d5b8';
       const tutorId = '64a32d48df2eaccf95fee709';
