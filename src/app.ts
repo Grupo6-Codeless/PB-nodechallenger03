@@ -5,6 +5,7 @@ import swaggerUI from 'swagger-ui-express';
 import './infra/databases/MongoDatabase';
 import routes from './infra/routes/index.router';
 import swaggerDocs from './swagger.json';
+import Morgan from './app/config/morgan';
 
 class App {
   public server: express.Application;
@@ -27,6 +28,7 @@ class App {
       })
     );
     this.server.use(cors());
+    this.server.use(Morgan);
   }
 
   private routes(): void {
