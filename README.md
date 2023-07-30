@@ -8,7 +8,7 @@ Challenge of the **NodeJS Scholl Program from [Compass.uol](https://compass.uol/
 
 ## Summary
 
-- ### [How to initialize](#-como-inicializar)
+- ### [How to initialize](#-How-to-initialize)
 - ### [Endpoints](#-endpoints)
 - ### [Schemas](#-schemas)
 
@@ -28,7 +28,7 @@ So, you have this new mission, to build the POC foundations of this brand new mi
 
 ## Requirements
 
-Before starting, you will need to have Node.js installed on your machine. Additionally, make sure you have a MongoDB Atlas collection set up, and don't forget to create a .env file based on the .env.example file.
+Before starting, you will need to have Node.js installed on your machine. Additionally, make sure you have a MongoDB Atlas collection set up, and don't forget to create a .env and .env.test file based on the .env.example file.
 
 ## How to initialize
 
@@ -38,14 +38,14 @@ Then you will run the following commands:
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/AntonioRdC/PBnodeChallenge2
+$ git clone https://github.com/Grupo6-Codeless/PB-nodechallenger03.git
 # Access the project folder
-$ cd PBnodeChallenge2
+$ cd PB-nodechallenger03
 # Install the dependencies
 $ npm install
 ```
 
-Create a .env file based on the .env.example file.
+Create a .env and .env.test file based on the .env.example file.
 
 ```bash
 # Start the application at localhost:5000
@@ -62,40 +62,41 @@ $ npm run dev
 
 ### Tutor Endpoints
 
-| Route             | Method | Description          |
-| ----------------- | :----: | -------------------- |
-| `/tutors`         |  GET   | Retrieves all tutors |
-| `/tutor`          |  POST  | Create a new tutor   |
-| `/tutor/:tutorId` |  PUT   | Updates a tutor      |
-| `/tutor/:tutorId` | DELETE | Deletes a tutor      |
+| Route             | Method | Description                          |
+| ----------------- | :----: | ------------------------------------ |
+| `/tutors`         |  GET   | Retrieves all tutors                 |
+| `/tutor`          |  POST  | Create a new tutor                   |
+| `/tutor/:tutorId` |  PUT   | Updates a tutor, all fields required |
+| `/tutor/:tutorId` | PATCH  | Updates a tutor                      |
+| `/tutor/:tutorId` | DELETE | Deletes a tutor                      |
 
 ### Pet Endpoints
 
-| Route                        | Method | Description                          |
-| ---------------------------- | :----: | ------------------------------------ |
-| `/pet/:tutorId`              |  POST  | Creates a pet and adds it to a tutor |
-| `/pet/:petId/tutor/:tutorId` |  PUT   | updates a pet's info                 |
-| `/pet/:petId/tutor/:tutorId` | DELETE | deletes a pet from a tutor           |
+| Route                        | Method | Description                               |
+| ---------------------------- | :----: | ----------------------------------------- |
+| `/pet/:tutorId`              |  POST  | Creates a pet and adds it to a tutor      |
+| `/pet/:petId/tutor/:tutorId` |  PUT   | updates a pet's info, all fields required |
+| `/pet/:petId/tutor/:tutorId` | PATCH  | updates a pet's info                      |
+| `/pet/:petId/tutor/:tutorId` | DELETE | deletes a pet from a tutor                |
 
 ## Schema
 
 ### Tutor Table
 
-| FieldName       |    Type    | Required | Unique |
-| --------------- | :--------: | :------: | :----: |
-| `_id`           |  ObjectId  |  false   |  true  |
-| `password`      |   String   |   true   | false  |
-| `name`          |   String   |   true   | false  |
-| `phone`         |   String   |   true   |  true  |
-| `email`         |   String   |   true   |  true  |
-| `date_of_birth` |   String   |   true   | false  |
-| `zip_code`      |   Number   |   true   | false  |
-| `pets`          | ObjectId[] |  false   |  true  |
+| FieldName       |    Type    | Required to Create | Unique |
+| --------------- | :--------: | :----------------: | :----: |
+| `_id`           |  ObjectId  |     forbidden      |  true  |
+| `password`      |   String   |      required      | false  |
+| `name`          |   String   |      required      | false  |
+| `phone`         |   String   |      required      |  true  |
+| `email`         |   String   |      required      |  true  |
+| `date_of_birth` |   String   |      required      | false  |
+| `zip_code`      |   String   |      required      | false  |
+| `pets`          | ObjectId[] |     forbidden      |  true  |
 
 ```bash
 # Example Tutor .json
 {
-    id: "64a32d48df2eadrf95fee709",
     name: "Jonas",
     phone: "85989323895",
     email: "jonas@paidepet.com",
@@ -106,19 +107,18 @@ $ npm run dev
 
 ### Pet Table
 
-| FieldName       |   Type   | Required | Unique |
-| --------------- | :------: | :------: | :----: |
-| `_id`           | ObjectId |  false   |  true  |
-| `name`          |  String  |   true   | false  |
-| `species`       |  String  |   true   | false  |
-| `carry`         |  String  |   true   | false  |
-| `weight`        |  Number  |   true   | false  |
-| `date_of_birth` |  String  |   true   | false  |
+| FieldName       |   Type   | Required to Create | Unique |
+| --------------- | :------: | :----------------: | :----: |
+| `_id`           | ObjectId |     forbidden      |  true  |
+| `name`          |  String  |      required      | false  |
+| `species`       |  String  |      required      | false  |
+| `carry`         |  String  |      required      | false  |
+| `weight`        |  Number  |      required      | false  |
+| `date_of_birth` |  String  |      required      | false  |
 
 ```bash
 # Example Pet .json
 {
-    id: "64a32d48df2eaccf95fee709",
     name: "Lilo",
     species: "dog",
     carry: "p",
@@ -128,14 +128,15 @@ $ npm run dev
 ```
 
 ## Author
-* <img src="https://avatars.githubusercontent.com/AntonioRdC" width=50><br>
+
+- <img src="https://avatars.githubusercontent.com/AntonioRdC" width=50><br>
   [Antonio Carvalho](https://github.com/AntonioRdC)
 
-* <img src="https://avatars.githubusercontent.com/Guilgb" width=50><br>
+- <img src="https://avatars.githubusercontent.com/Guilgb" width=50><br>
   [Guilherme Bezerra](https://github.com/Guilgb)
 
-* <img src="https://avatars.githubusercontent.com/Franc1scaGeovanna" width=50><br>
+- <img src="https://avatars.githubusercontent.com/Franc1scaGeovanna" width=50><br>
   [Franc1scaGeovanna](https://github.com/Franc1scaGeovanna)
 
-* <img src="https://avatars.githubusercontent.com/tomazvinicius" width=50><br>
+- <img src="https://avatars.githubusercontent.com/tomazvinicius" width=50><br>
   [Vinicius Tomaz](https://github.com/tomazvinicius)
