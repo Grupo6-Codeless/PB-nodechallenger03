@@ -12,7 +12,7 @@ class Database {
         process.env.MONGO_DB_URL ?? 'mongodb://localhost:27017'
       );
     } catch (error) {
-      console.error('Erro ao conectar ao banco de dados:', error);
+      console.error('Error to connect in database:', error);
       throw error;
     }
   }
