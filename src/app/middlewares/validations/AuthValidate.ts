@@ -16,13 +16,10 @@ export default (req: Request, res: Response, next: NextFunction): void => {
 
     next();
   } catch (errors) {
-    let errorsDetails: string[] = [];
+    const errorsDetails: string[] = [];
     for (const error of errors.details) {
-      errorsDetails.push(error.message);
+      errorsDetails.push(error.message.replace(/\\/g, '').replace(/"/g, ''));
     }
-    errorsDetails = errorsDetails.map((details) =>
-      details.replace(/\\/g, '').replace(/"/g, '')
-    );
     res.status(400).json({
       message: errors.name,
       details: errorsDetails,

@@ -13,7 +13,7 @@ class AuthService {
       throw new BadRequestError('Incorrect email or password, try again!');
 
     const verifyAuth = await bcrypt.compare(payload.password, tutor.password);
-    if (verifyAuth === false)
+    if (!verifyAuth)
       throw new BadRequestError('Incorrect email or password, try again!');
 
     const auth = jwt.sign(
