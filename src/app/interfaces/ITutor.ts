@@ -5,7 +5,7 @@ export interface ITutor {
   password: string | undefined;
   phone: string;
   email: string;
-  date_of_birth: string;
+  date_of_birth: Date;
   zip_code: string;
   pets?: Types.ObjectId[];
 }
@@ -16,7 +16,7 @@ export interface ITutorResponse {
   password?: string;
   phone: string;
   email: string;
-  date_of_birth: string;
+  date_of_birth: Date;
   zip_code: string;
   pets?: Types.ObjectId[];
 }

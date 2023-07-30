@@ -7,7 +7,7 @@ class TutorServiceMock {
           name: 'Tamisia',
           phone: '69981212317',
           email: 'tamisia@paidepet.com',
-          date_of_birth: '1993-12-12 10:10',
+          date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
           zip_code: 61760000,
           pets: [
             {
@@ -39,7 +39,7 @@ class TutorServiceMock {
       name: 'Antonio',
       phone: '69981212317',
       email: 'antonio@paidepet.com',
-      date_of_birth: '1993-12-12 10:10',
+      date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       zip_code: 61760000,
       pets: [
         {
@@ -58,7 +58,7 @@ class TutorServiceMock {
       name: 'Guilherme',
       phone: '69981212317',
       email: 'antonio@paidepet.com',
-      date_of_birth: '1993-12-12 10:10',
+      date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       zip_code: 61760000,
     };
   }
@@ -77,7 +77,7 @@ class TutorServiceMock {
       password: '123456',
       phone: '85999323895',
       email: 'geovanna@paidepet.com',
-      date_of_birth: '1993-12-12 10:10',
+      date_of_birth: new Date('2002-01-26T00:00:00.000Z'),
       zip_code: 61760000,
       pets: [],
     };

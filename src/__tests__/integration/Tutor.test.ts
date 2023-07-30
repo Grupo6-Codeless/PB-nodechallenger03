@@ -8,7 +8,7 @@ export const sutCreateTutor = {
   password: '1234',
   phone: '6915251812452323',
   email: 'testetestado@paidepet.com',
-  date_of_birth: '1993-12-12 10:10',
+  date_of_birth: '2002-01-26T00:00:00.000Z',
   zip_code: '61760000',
 };
 
