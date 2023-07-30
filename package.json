@@ -1,9 +1,9 @@
 {
-  "name": "pbchallenge",
-  "version": "1.0.0",
+  "name": "pb-nodechallenger03",
+  "version": "3.0.0",
   "main": "index.js",
-  "repository": "https://github.com/AntonioRdC/PBnodeChallenge2",
-  "author": [
+  "repository": "https://github.com/Grupo6-Codeless/PB-nodechallenger03",
+  "contributors": [
     {
       "name": "Vinicius Tomaz",
       "email": "viniciustomax@gmail.com"
@@ -46,7 +46,6 @@
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.3",
     "@types/jsonwebtoken": "^9.0.2",
-    "@types/mocha": "^10.0.1",
     "@types/supertest": "^2.0.12",
     "@types/swagger-ui-express": "^4.1.3",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
