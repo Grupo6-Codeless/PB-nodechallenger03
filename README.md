@@ -90,7 +90,7 @@ $ npm run dev
 | `name`          |   String   |      required      | false  |
 | `phone`         |   String   |      required      |  true  |
 | `email`         |   String   |      required      |  true  |
-| `date_of_birth` |   String   |      required      | false  |
+| `date_of_birth` |    Date    |      required      | false  |
 | `zip_code`      |   String   |      required      | false  |
 | `pets`          | ObjectId[] |     forbidden      |  true  |
 
@@ -100,7 +100,7 @@ $ npm run dev
     name: "Jonas",
     phone: "85989323895",
     email: "jonas@paidepet.com",
-    date_of_birth: "1993-12-12 10:10",
+    date_of_birth: "1993-12-12",
     zip_code: "61760000"
 }
 ```
@@ -114,7 +114,7 @@ $ npm run dev
 | `species`       |  String  |      required      | false  |
 | `carry`         |  String  |      required      | false  |
 | `weight`        |  Number  |      required      | false  |
-| `date_of_birth` |  String  |      required      | false  |
+| `date_of_birth` |   Date   |      required      | false  |
 
 ```bash
 # Example Pet .json
@@ -123,7 +123,7 @@ $ npm run dev
     species: "dog",
     carry: "p",
     weight: 5,
-    date_of_birth: "1993-12-12 10:10"
+    date_of_birth: "1993-12-12"
 }
 ```
 

@@ -452,7 +452,7 @@
                     },
                     "date_of_birth": {
                         "type": "string",
-                        "example": "2001-04-30 10:10"
+                        "example": "2001-04-30"
                     },
                     "zip_code": {
                         "type": "string",
@@ -477,7 +477,7 @@
                     },
                     "date_of_birth": {
                         "type": "string",
-                        "example": "1993-12-12 10:10"
+                        "example": "1993-12-12"
                     },
                     "zip_code": {
                         "type": "string",
@@ -506,7 +506,7 @@
                     },
                     "date_of_birth": {
                         "type": "string",
-                        "example": "1993-12-12 10:10"
+                        "example": "1993-12-12"
                     }
                 }
             },
