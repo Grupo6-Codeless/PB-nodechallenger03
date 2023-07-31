@@ -18,7 +18,7 @@ A client hired Compass to build a new microservice for its veterinary franchise.
 
 So, you have this new mission, to build the POC foundations of this brand new microservice, so the sales and management team can have the primary technical view of the needs that the client has.
 
-## Tecnologias
+## Technologies
 
 <p>
   <img src="https://user-images.githubusercontent.com/65569815/182266557-f2d0c589-fe31-4d65-b867-cb40385066a0.svg" width="100">
@@ -45,7 +45,7 @@ $ cd PB-nodechallenger03
 $ npm install
 ```
 
-Create a .env and .env.test file based on the .env.example file.
+Create a ".env" and ".env.test" file based on the .env.example file.
 
 ```bash
 # Start the application at localhost:5000
